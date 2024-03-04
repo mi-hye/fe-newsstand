@@ -1,0 +1,57 @@
+.press {
+	padding: 10px 20px;
+}
+.press__nav {
+	display: flex;
+	justify-content: space-between;
+	margin-top: 5px;
+}
+
+.press__nav__column {
+	display: flex;
+}
+
+.press__nav__column > div {
+	font-size: 16px;
+}
+
+.press__nav__column > div:last-child {
+	margin-left: 15px;
+}
+
+.press__nav__column i {
+	font-size: 20px;
+}
+
+.press__nav__column:first-child > div:first-child {
+	font-weight: 700;
+}
+
+.press__nav__column:first-child > div:last-child {
+	font-weight: 500;
+	margin-left: 30px;
+	color: rgba(148, 148, 148, 0.8); /*js로 class 부여 예정*/
+}
+
+.press__grid {
+	margin-top: 20px;
+	height: 100%;
+	display: grid;
+	grid-template-columns: repeat(6, 1fr);
+	grid-template-rows: repeat(4, 1fr);
+	border-top: 2px solid rgba(177, 177, 177, 0.2);
+	border-left: 2px solid rgba(177, 177, 177, 0.2);
+}
+
+.press__grid > div {
+	border-right: 2px solid rgba(177, 177, 177, 0.2);
+	border-bottom: 2px solid rgba(177, 177, 177, 0.2);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 4.8rem;
+}
+
+.press__grid img {
+	height: 20px;
+}
