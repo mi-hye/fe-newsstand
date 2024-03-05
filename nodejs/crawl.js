@@ -1,5 +1,6 @@
 import puppeteer from "puppeteer";
 import { setInterval } from "timers/promises";
+import saveJSON from "./File.js";
 
 const getImgElements = async (page) =>
 	await page.evaluate(() => {
@@ -7,7 +8,7 @@ const getImgElements = async (page) =>
 		return Array.from(imgNodes).map((img) => img.src);
 	});
 
-const getLatestNews=async(page, latestNews)=> {
+const getLatestNews = async (page, latestNews) => {
 	for await (const startTime of setInterval(3000, Date.now())) {
 		const now = Date.now();
 		const news = await page.evaluate(() => {
@@ -16,13 +17,13 @@ const getLatestNews=async(page, latestNews)=> {
 			);
 			return { text: a.text, href: a.href };
 		});
-		
+
 		latestNews.push(news);
 		if (now - startTime >= 33000) {
 			break;
 		}
 	}
-}
+};
 
 async function crawl() {
 	const latestNews = [];
@@ -42,6 +43,6 @@ async function crawl() {
 	return [latestNews, imgs];
 }
 
-const [a, b] = await crawl();
-console.log("출력", a);
-console.log("출력", b);
+const [latestNews, imgs] = await crawl();
+saveJSON("news", latestNews);
+saveJSON("images", imgs);
