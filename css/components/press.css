@@ -9,13 +9,6 @@
 
 .press__nav__column {
 	display: flex;
-}
-
-.press__nav__column > div {
-	font-size: 16px;
-}
-
-.press__nav__column > div:hover {
 	font-size: 16px;
 }
 
