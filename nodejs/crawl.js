@@ -5,7 +5,9 @@ import saveJSON from "./File.js";
 const getImgElements = async (page) =>
 	await page.evaluate(() => {
 		const imgNodes = document.querySelectorAll(".news_logo");
-		return Array.from(imgNodes).map((img) => img.src);
+		return Array.from(imgNodes).map((img) => {
+			return { src: img.src, alt: img.alt };
+		});
 	});
 
 const getLatestNews = async (page, latestNews) => {
@@ -33,7 +35,7 @@ async function crawl() {
 	await page.goto("https://www.naver.com/");
 
 	for (let i = 0; i < 4; i++) {
-		imgs.push(await getImgElements(page));
+		imgs.push(await getImgElements(page, imgs));
 		await page.click(".ContentPagingView-module__btn_next___ZBhby");
 	}
 	await getLatestNews(page, latestNews);
@@ -45,4 +47,4 @@ async function crawl() {
 
 const [latestNews, imgs] = await crawl();
 saveJSON("news", latestNews);
-saveJSON("images", imgs);
+saveJSON("images", imgs.flat());
