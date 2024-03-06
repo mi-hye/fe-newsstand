@@ -9,12 +9,12 @@
 	font-weight: bolder;
 }
 
-.news-header > a > i {
+.news-header i {
 	color: var(--blue);
 	margin-right: 10px;
 }
 
-.news-header > p {
+.news-header__date {
 	font-size: 12px;
 	margin-top: 7px;
 	font-weight: 600;
