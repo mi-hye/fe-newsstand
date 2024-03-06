@@ -1,5 +1,5 @@
 .news-header {
-	padding: 20px 20px 15px; /*나중에 변수로 빼장*/
+	padding: 20px 20px 15px;
 	display: flex;
 	justify-content: space-between;
 }
@@ -10,7 +10,7 @@
 }
 
 .news-header > a > i {
-	color: #4361cf;
+	color: var(--blue);
 	margin-right: 10px;
 }
 
@@ -18,5 +18,5 @@
 	font-size: 12px;
 	margin-top: 7px;
 	font-weight: 600;
-	color: #5f6d75;
+	color: var(--gray);
 }

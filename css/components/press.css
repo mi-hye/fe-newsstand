@@ -18,17 +18,17 @@
 
 .press__nav__column i {
 	font-size: 20px;
-	color: rgba(148, 148, 148, 0.8);
+	color: rgba(var(--deep-gray-rgb), 0.8);
 }
 
 .press__nav__column i:hover {
 	cursor: pointer;
-	color: #4361cf;
+	color: var(--blue);
 }
 
 .press__nav__column:first-child > div {
 	font-weight: 500;
-	color: rgba(148, 148, 148, 0.8);
+	color: rgba(var(--deep-gray-rgb), 0.8);
 }
 
 .press__nav__column:first-child > div:hover {
@@ -52,12 +52,12 @@
 	font-size: 50px;
 	border: none;
 	cursor: pointer;
-	color: rgba(177, 177, 177, 0.5);
+	color: rgba(var(--gray-rgb), 0.5);
 	transition: all 0.3s ease-in-out;
 }
 
 .press__grid-wrap__button i:hover {
-	color: rgba(177, 177, 177, 0.9);
+	color: rgba(var(--gray-rgb), 0.9);
 }
 
 .press__grid-wrap__button:first-child i {
@@ -75,13 +75,13 @@
 	display: grid;
 	grid-template-columns: repeat(6, 1fr);
 	grid-template-rows: repeat(4, 1fr);
-	border-top: 2px solid rgba(177, 177, 177, 0.2);
-	border-left: 2px solid rgba(177, 177, 177, 0.2);
+	border-top: var(--main-border);
+	border-left: var(--main-border);
 }
 
 .press__grid-wrap__grid > div {
-	border-right: 2px solid rgba(177, 177, 177, 0.2);
-	border-bottom: 2px solid rgba(177, 177, 177, 0.2);
+	border-right: var(--main-border);
+	border-bottom: var(--main-border);
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -90,7 +90,7 @@
 }
 
 .press__grid-wrap__grid > div:hover {
-	background-color: rgba(177, 177, 177, 0.1);
+	background-color: rgba(var(--gray-rgb), 0.1);
 }
 
 .press__grid-wrap__grid > div:hover button {
@@ -102,10 +102,10 @@
 	position: absolute;
 	border-radius: 25px;
 	padding: 3px 8px;
-	border: 2px solid rgba(177, 177, 177, 0.4);
-	color: rgb(131, 131, 131);
+	border: var(--main-border);
+	color: var(--gray);
 	cursor: pointer;
-	font-weight: 450;
+	font-weight: 500;
 }
 
 .press__grid-wrap__grid img {

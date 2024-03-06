@@ -6,10 +6,10 @@
 }
 
 .latest-news div {
-	border: 2px solid rgba(177, 177, 177, 0.3);
+	border: var(--main-border);
 	width: 49%;
 	height: 35px;
-	background-color: rgba(177, 177, 177, 0.1);
+	background-color: rgba(var(--gray-rgb), 0.1);
 }
 
 .latest-news__column {
