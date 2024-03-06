@@ -1,0 +1,27 @@
+.latest-news {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 10px 20px;
+}
+
+.latest-news div {
+	border: var(--main-border);
+	width: 49%;
+	height: 35px;
+	background-color: rgba(var(--gray-rgb), 0.1);
+}
+
+.latest-news__column {
+	font-size: 12px;
+	display: flex;
+	align-items: center;
+}
+
+.latest-news__column > span {
+	margin-left: 10px;
+}
+
+.latest-news__column > span:first-child {
+	font-weight: 700;
+}

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0"
+		/>
+		<title>News stand</title>
+		<link rel="stylesheet" href="css/style.css" />
+		<script defer type="module" src="js/utils/readJSON.js"></script>
+		<script defer src="js/newsHeader.js"></script>
+		<script defer type="module" src="js/press.js"></script>
+		<!-- <script defer type="module" src="js/test.js"></script> -->
+		<script
+			defer
+			src="https://kit.fontawesome.com/677c473c16.js"
+			crossorigin="anonymous"
+		></script>
+	</head>
+	<body>
+		<div class="news-wrap">
+			<header class="news-header">
+				<a href="#"
+					><i class="fa-solid fa-newspaper"></i>뉴스스탠드</a
+				>
+				<span class="news-header__date"></span>
+			</header>
+
+			<section class="latest-news">
+				<div class="latest-news__column">
+					<span>연합뉴스</span>
+					<span></span>
+				</div>
+				<div class="latest-news__column">
+					<span>연합뉴스</span>
+					<span></span>
+				</div>
+			</section>
+
+			<section class="press">
+				<nav class="press__nav">
+					<div class="press__nav__column">
+						<div>전체 언론사</div>
+						<div>내가 구독한 언론사</div>
+					</div>
+					<div class="press__nav__column">
+						<div><i class="fa-solid fa-list"></i></div>
+						<div><i class="fas fa-th-large"></i></div>
+					</div>
+				</nav>
+				<div class="press__grid-wrap">
+					<div class="press__grid-wrap__button">
+						<i class="fa-solid fa-chevron-left"></i>
+					</div>
+					<div class="press__grid-wrap__grid"></div>
+					<div class="press__grid-wrap__button">
+						<i class="fa-solid fa-chevron-right"></i>
+					</div>
+				</div>
+			</section>
+		</div>
+	</body>
+</html>

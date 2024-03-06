@@ -1,0 +1,22 @@
+.news-header {
+	padding: 20px 20px 15px;
+	display: flex;
+	justify-content: space-between;
+}
+
+.news-header > a {
+	font-size: 18px;
+	font-weight: bolder;
+}
+
+.news-header i {
+	color: var(--blue);
+	margin-right: 10px;
+}
+
+.news-header__date {
+	font-size: 12px;
+	margin-top: 7px;
+	font-weight: 600;
+	color: var(--gray);
+}
