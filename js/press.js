@@ -41,12 +41,13 @@ function controlVisibility() {
 function renderPress(idx) {
 	let nodes = "";
 	const startIdx = idx * 24;
+	const randomImages = images.sort(() => Math.random() - 0.5);
 
 	Array.from({ length: 24 }).forEach((_, i) => {
 		nodes += `
 		<div>
-			<img src="${images[startIdx + i].src}" alt="${
-			images[startIdx + i].alt
+			<img src="${randomImages[startIdx + i].src}" alt="${
+			randomImages[startIdx + i].alt
 		}"/>
 		</div>`;
 	});
