@@ -1,4 +1,4 @@
-import readJSON from "./readJSON.js";
+import readJSON from "./utils/readJSON.js";
 
 const images = await readJSON("images");
 const gridWrap = document.querySelector(".press__grid-wrap__grid");
@@ -24,13 +24,14 @@ right.addEventListener("click", () => {
 function controlVisibility() {
 	if (idx === 0) {
 		left.style.visibility = "hidden";
-		right.style.visibility = "visible"; // idx 1,2일떄  해줘야함!!!
+		return;
 	}
-
 	if (idx === 3) {
-		left.style.visibility = "visible";
 		right.style.visibility = "hidden";
+		return;
 	}
+	right.style.visibility = "visible"; // idx 1,2일떄  해줘야함!!!
+	left.style.visibility = "visible";
 
 	//idx === 0 이면 left의 vi이게 히든
 	// idx === 3이면 rigt의 vi가 히든
