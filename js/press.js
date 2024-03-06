@@ -49,6 +49,7 @@ function renderPress(idx) {
 			<img src="${randomImages[startIdx + i].src}" alt="${
 			randomImages[startIdx + i].alt
 		}"/>
+		<button>+ 구독하기</button>
 		</div>`;
 	});
 
