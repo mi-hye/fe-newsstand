@@ -24,17 +24,18 @@ right.addEventListener("click", () => {
 function controlVisibility() {
 	if (idx === 0) {
 		left.style.visibility = "hidden";
+		left.style.opacity = "0";
 		return;
 	}
 	if (idx === 3) {
 		right.style.visibility = "hidden";
+		right.style.opacity = "0";
 		return;
 	}
-	right.style.visibility = "visible"; // idx 1,2일떄  해줘야함!!!
+	right.style.visibility = "visible";
 	left.style.visibility = "visible";
-
-	//idx === 0 이면 left의 vi이게 히든
-	// idx === 3이면 rigt의 vi가 히든
+	left.style.opacity = "100";
+	right.style.opacity = "100";
 }
 
 function renderPress(idx) {
