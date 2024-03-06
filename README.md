@@ -25,10 +25,11 @@
 - 템플릿 리터럴을 이용해서 innerHtml의 프로퍼티에 부여하면 jsx처럼 사용할 수 있다
 
 ```
-str += `
-		<div>
+str += `<div>
 			태그 추가
 		</div>`;
 
 tag.innerHTML=str;
 ```
+
+- overflow 속성이 효력을 갖기 위해선 반드시 블록 레벨 컨테이너의 높이(height 또는 max-height)를 설정하거나, white-space를 nowrap으로 설정해야 한다!(mdn참조)
