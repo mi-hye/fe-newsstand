@@ -93,6 +93,25 @@
 	background-color: rgba(177, 177, 177, 0.1);
 }
 
+.press__grid-wrap__grid > div:hover button {
+	display: inline;
+}
+
+.press__grid-wrap__grid button {
+	display: none;
+	position: absolute;
+	border-radius: 25px;
+	padding: 3px 8px;
+	border: 2px solid rgba(177, 177, 177, 0.4);
+	color: rgb(131, 131, 131);
+	cursor: pointer;
+	font-weight: 450;
+}
+
 .press__grid-wrap__grid img {
 	height: 20px;
+}
+
+.press__grid-wrap__grid > div:hover img {
+	display: none;
 }

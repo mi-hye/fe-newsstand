@@ -15,6 +15,12 @@ body {
 	font-family: "Noto Sans KR";
 }
 
+button {
+	background-color: white;
+	font-family: inherit;
+	font-size: 12px;
+}
+
 .news-wrap {
 	height: 70%;
 	width: 60%;
