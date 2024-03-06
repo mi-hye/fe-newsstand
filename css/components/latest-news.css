@@ -18,10 +18,10 @@
 	align-items: center;
 }
 
-.latest-news__column > p {
+.latest-news__column > span {
 	margin-left: 10px;
 }
 
-.latest-news__column > p:first-child {
+.latest-news__column > span:first-child {
 	font-weight: 700;
 }
