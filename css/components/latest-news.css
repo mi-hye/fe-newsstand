@@ -38,15 +38,23 @@
 
 .latest-news__rolling--befor-hover {
 	position: absolute;
-	animation: rolling 4s cubic-bezier(0.220, 0.700, 1.000, 1.010) infinite;
+	animation: rolling 4s cubic-bezier(0.22, 0.7, 1, 1.01) infinite;
+}
+
+.latest-news__rolling--after-hover {
+	animation: goup 4s cubic-bezier(0.22, 0.7, 1, 1.01) forwards;
+}
+
+.latest-news__rolling--befor-hover:last-child {
+	animation: rolling 5s cubic-bezier(0.22, 0.7, 1, 1.01) infinite;
+}
+
+.latest-news__rolling--after-hover {
+	animation: goup 5s cubic-bezier(0.22, 0.7, 1, 1.01) forwards;
 }
 
 .latest-news__rolling--stop:hover {
 	text-decoration: underline;
-}
-
-.latest-news__rolling--after-hover {
-	animation: goup 4s cubic-bezier(0.220, 0.700, 1.000, 1.010) forwards;
 }
 
 @keyframes rolling {
