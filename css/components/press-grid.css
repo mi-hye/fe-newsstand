@@ -29,7 +29,7 @@
 }
 
 .press__grid-wrap__grid > div:hover {
-	background-color: rgba(var(--gray-rgb), 0.1);
+	background-color: var(--gray-bacground);
 }
 
 .press__grid-wrap__grid > div:hover button {
