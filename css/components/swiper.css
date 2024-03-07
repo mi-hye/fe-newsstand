@@ -1,0 +1,21 @@
+.swiper {
+	position: absolute;
+	top: 46%;
+	font-size: 50px;
+	border: none;
+	cursor: pointer;
+	color: rgba(var(--gray-rgb), 0.5);
+	transition: all 0.3s ease-in-out;
+}
+
+.swiper:hover {
+	color: rgba(var(--gray-rgb), 0.9);
+}
+
+.swiper.fa-chevron-left {
+	left: -10%;
+}
+
+.swiper.fa-chevron-right {
+	right: -10%;
+}

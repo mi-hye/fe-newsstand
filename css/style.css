@@ -8,6 +8,7 @@
 @import "components/press.css";
 @import "components/press-grid.css";
 @import "components/press-list.css";
+@import "components/swiper.css";
 
 body {
 	height: 100vh;
