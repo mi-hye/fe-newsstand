@@ -30,22 +30,26 @@
 	margin-right: 5px;
 	display: flex;
 	align-items: center;
-	height: 100%;
+	height: 55%;
 	width: 80%;
 	overflow: hidden;
 	white-space: nowrap;
 }
 
-.latest-news__rolling--current {
+.latest-news__rolling--befor-hover {
 	position: absolute;
-	animation: rolling1 4s linear infinite;
+	animation: rolling 4s cubic-bezier(0.220, 0.700, 1.000, 1.010) infinite;
 }
 
-.latest-news__rolling--current:hover {
+.latest-news__rolling--stop:hover {
 	text-decoration: underline;
 }
 
-@keyframes rolling{
+.latest-news__rolling--after-hover {
+	animation: goup 4s cubic-bezier(0.220, 0.700, 1.000, 1.010) forwards;
+}
+
+@keyframes rolling {
 	0% {
 		transform: translateY(250%);
 	}
@@ -53,6 +57,19 @@
 	20%,
 	30%,
 	40%,
+	50%,
+	60%,
+	70%,
+	80%,
+	90% {
+		transform: translateY(0);
+	}
+	100% {
+		transform: translateY(-250%);
+	}
+}
+
+@keyframes goup {
 	50%,
 	60%,
 	70%,
