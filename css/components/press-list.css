@@ -5,3 +5,25 @@
 .press__list-wrap.active {
 	display: block;
 }
+
+.press__list-wrap {
+	margin-top: 20px;
+	border: var(--main-border);
+	background-color: var(--gray-bacground);
+}
+
+.press__list__nav {
+	height: 32px;
+	display: flex;
+}
+
+.press__list__nav__item {
+	display: flex;
+	align-items: center;
+	height: 100%;
+	margin: 0px 10px;
+	cursor: pointer;
+	font-size: 12px;
+	font-weight: var(--main-weight);
+	color: var(--main-font-color);
+}
