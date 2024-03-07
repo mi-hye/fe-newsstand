@@ -6,16 +6,14 @@ const [gridWrap, listWrap] =
 
 listIcon.addEventListener("click", () => {
 	listIcon.classList.add("active");
-	gridIcon.classList.remove("active");
-
 	listWrap.classList.add("active");
+	gridIcon.classList.remove("active");
 	gridWrap.classList.remove("active");
 });
 
 gridIcon.addEventListener("click", () => {
-	listIcon.classList.remove("active");
 	gridIcon.classList.add("active");
-
-	listWrap.classList.remove("active");
 	gridWrap.classList.add("active");
+    listIcon.classList.remove("active");
+	listWrap.classList.remove("active");
 });
