@@ -5,3 +5,6 @@ date.innerHTML = new Intl.DateTimeFormat("ko-KR", {
 	day: "numeric",
 	weekday: "long",
 }).format(new Date());
+
+const a = document.querySelector(".news-header > a");
+a.addEventListener("click", () => window.location.reload());
