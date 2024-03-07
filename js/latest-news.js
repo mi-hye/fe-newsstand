@@ -8,10 +8,10 @@ const [firstArea, secondArea] = document.querySelectorAll(
 	".latest-news__rolling"
 );
 
-AddLatestNews(firstArea, firstNews);
-AddLatestNews(secondArea, secondNews);
+AddLatestNews(firstArea, firstNews, 4000);
+AddLatestNews(secondArea, secondNews, 5000);
 
-function AddLatestNews(rollingArea, news) {
+function AddLatestNews(rollingArea, news, delay) {
 	let interval;
 	let idx = 0;
 
@@ -28,7 +28,7 @@ function AddLatestNews(rollingArea, news) {
 			if (idx === 4) idx = 0;
 			else idx += 1;
 			createLatestNews(idx);
-		}, 4000);
+		}, delay);
 	};
 
 	const stopNewChanging = () => {
