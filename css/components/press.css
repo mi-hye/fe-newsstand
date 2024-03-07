@@ -10,7 +10,7 @@
 .press__nav__press-column,
 .press__nav__icons-column {
 	display: flex;
-	font-size: 16px;
+	font-size: 14px;
 }
 
 .press__nav__press-column > div:last-child,
@@ -20,7 +20,7 @@
 
 .press__nav__icons-column i {
 	cursor: pointer;
-	font-size: 20px;
+	font-size: 16px;
 	color: var(--main-font-color);
 }
 
