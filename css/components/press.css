@@ -21,7 +21,7 @@
 .press__nav__icons-column i {
 	cursor: pointer;
 	font-size: 20px;
-	color: rgba(var(--deep-gray-rgb), 0.8);
+	color: var(--main-font-color);
 }
 
 .press__nav__icons-column i.active {
@@ -30,8 +30,8 @@
 }
 
 .press__nav__press-column > div {
-	font-weight: 500;
-	color: rgba(var(--deep-gray-rgb), 0.8);
+	font-weight: var(--main-weight);
+	color: var(--main-font-color);
 	cursor: pointer;
 }
 
@@ -43,4 +43,3 @@
 .press__nav__grid-icons {
 	margin-left: 30px;
 }
-

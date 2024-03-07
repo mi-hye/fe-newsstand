@@ -5,4 +5,6 @@
 	--gray-rgb: 177, 177, 177;
 	--deep-gray-rgb: 148, 148, 148;
 	--gray-bacground: rgba(var(--gray-rgb), 0.1);
+	--main-weight: 500;
+	--main-font-color: rgba(var(--deep-gray-rgb), 0.8);
 }

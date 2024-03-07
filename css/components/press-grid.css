@@ -44,7 +44,7 @@
 	border: var(--main-border);
 	color: var(--gray);
 	cursor: pointer;
-	font-weight: 500;
+	font-weight: var(--main-weight);
 }
 
 .press__grid-wrap__grid img {
