@@ -1,0 +1,7 @@
+.press__list-wrap {
+	display: none;
+}
+
+.press__list-wrap.active {
+	display: block;
+}

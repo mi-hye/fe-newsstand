@@ -6,6 +6,8 @@
 @import "components/news-header.css";
 @import "components/latest-news.css";
 @import "components/press.css";
+@import "components/press-grid.css";
+@import "components/press-list.css";
 
 body {
 	height: 100vh;
