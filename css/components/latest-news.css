@@ -19,9 +19,6 @@
 .latest-news__column > span {
 	margin: 10px;
 	white-space: nowrap;
-}
-
-.latest-news__column > span:first-child {
 	font-weight: 700;
 }
 
@@ -45,16 +42,16 @@
 	animation: goup 4s cubic-bezier(0.22, 0.7, 1, 1.01) forwards;
 }
 
-.latest-news__rolling--befor-hover:last-child {
+.latest-news__rolling--stop:hover {
+	text-decoration: underline;
+}
+
+.latest-news__column:last-child .latest-news__rolling--befor-hover {
 	animation: rolling 5s cubic-bezier(0.22, 0.7, 1, 1.01) infinite;
 }
 
-.latest-news__rolling--after-hover {
+.latest-news__column:last-child .latest-news__rolling--after-hover {
 	animation: goup 5s cubic-bezier(0.22, 0.7, 1, 1.01) forwards;
-}
-
-.latest-news__rolling--stop:hover {
-	text-decoration: underline;
 }
 
 @keyframes rolling {
