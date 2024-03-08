@@ -33,12 +33,16 @@
 	font-weight: var(--main-weight);
 	color: var(--main-font-color);
 	cursor: pointer;
+	.active {
+		font-weight: 700;
+		color: black;
+	}
 }
 
-.press__nav__press-column > div.active {
+/* .press__nav__press-column > div {
 	font-weight: 700;
 	color: black;
-}
+} */
 
 .press__nav__grid-icons {
 	margin-left: 30px;
