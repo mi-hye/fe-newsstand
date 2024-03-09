@@ -1,0 +1,49 @@
+import renderPressGrid from "./pressGrid.js";
+
+const [left, right] = document.querySelectorAll(".press__grid-wrap__button > i");
+
+function handlePressSwiper() {
+	let idx = GRID.firstPageIdx;
+
+	left.addEventListener("click", () => {
+		if (!idx) idx = GRID.firstPageIdx;
+		else idx -= 1;
+		renderPressGrid(idx);
+		controlVisibility(idx);
+	});
+	right.addEventListener("click", () => {
+		if (idx > 2) idx = GRID.lastPageIdx;
+		else idx += 1;
+		renderPressGrid(idx);
+		controlVisibility(idx);
+	});
+}
+
+function controlVisibility(idx) {
+	if (idx === GRID.firstPageIdx) {
+		toggleVisibility(left, VISIBILITY.hidden);
+		return;
+	}
+	if (idx === GRID.lastPageIdx) {
+		toggleVisibility(right, VISIBILITY.hidden);
+		return;
+	}
+	toggleVisibility(right, VISIBILITY.visible);
+	toggleVisibility(left, VISIBILITY.visible);
+}
+
+function toggleVisibility(direction, flag) {
+	if (flag === VISIBILITY.hidden) {
+		direction.style.visibility = "hidden";
+		direction.style.opacity = "0";
+		return;
+	}
+	if (flag === VISIBILITY.visible) {
+		direction.style.visibility = "visible";
+		direction.style.opacity = "100";
+		return;
+	}
+}
+
+controlVisibility(GRID.firstPageIdx);
+handlePressSwiper();
