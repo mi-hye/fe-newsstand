@@ -1,6 +1,6 @@
 async function readJSON(file) {
 	try {
-		const response = await fetch(`../nodejs/${file}.JSON`);
+		const response = await fetch(`../src/nodejs/${file}.json`);
 		const text = await response.text();
 		return JSON.parse(text);
 	} catch (error) {
