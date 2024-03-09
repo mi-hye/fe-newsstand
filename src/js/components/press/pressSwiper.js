@@ -1,25 +1,26 @@
 import renderPressGrid from "./pressGrid.js";
 
-const [left, right] = document.querySelectorAll(".press__grid-wrap__button > i");
-
 function handlePressSwiper() {
+	const [left, right] = document.querySelectorAll(".press__grid-wrap__button > i");
 	let idx = GRID.firstPageIdx;
 
 	left.addEventListener("click", () => {
 		if (!idx) idx = GRID.firstPageIdx;
 		else idx -= 1;
 		renderPressGrid(idx);
-		controlVisibility(idx);
+		controlVisibility(idx, { left, right });
 	});
 	right.addEventListener("click", () => {
 		if (idx > 2) idx = GRID.lastPageIdx;
 		else idx += 1;
 		renderPressGrid(idx);
-		controlVisibility(idx);
+		controlVisibility(idx, { left, right });
 	});
+
+	controlVisibility(GRID.firstPageIdx, { left, right });
 }
 
-function controlVisibility(idx) {
+function controlVisibility(idx, { left, right }) {
 	if (idx === GRID.firstPageIdx) {
 		toggleVisibility(left, VISIBILITY.hidden);
 		return;
@@ -45,5 +46,4 @@ function toggleVisibility(direction, flag) {
 	}
 }
 
-controlVisibility(GRID.firstPageIdx);
 handlePressSwiper();
