@@ -1,10 +1,8 @@
-import readJSON from "./utils/readJSON.js";
+import readJSON from "../../utils/readJson.js";
 
 const imagesJson = await readJSON("images");
 const gridWrap = document.querySelector(".press__grid-wrap__grid");
-const [left, right] = document.querySelectorAll(
-	".press__grid-wrap__button > i"
-);
+const [left, right] = document.querySelectorAll(".press__grid-wrap__button > i");
 let idx = GRID.firstPageIdx;
 
 left.addEventListener("click", () => {
@@ -50,19 +48,14 @@ function renderPress(idx) {
 	const startIdx = idx * GRID.cellCount;
 	const randomImages = imagesJson.sort(() => Math.random() - 0.5);
 
-	gridWrap.innerHTML = Array.from({ length: GRID.cellCount }).reduce(
-		(prev, _, i) => {
-			prev += `
+	gridWrap.innerHTML = Array.from({ length: GRID.cellCount }).reduce((prev, _, i) => {
+		prev += `
 		<div>
-			<img src="${randomImages[startIdx + i].src}" alt="${
-				randomImages[startIdx + i].alt
-			}"/>
+			<img src="${randomImages[startIdx + i].src}" alt="${randomImages[startIdx + i].alt}"/>
 		<button>+ 구독하기</button>
 		</div>`;
-			return prev;
-		},
-		""
-	);
+		return prev;
+	}, "");
 }
 
 renderPress(GRID.firstPageIdx);
