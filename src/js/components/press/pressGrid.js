@@ -1,4 +1,6 @@
+import { GRID } from "../../utils/Constants.js";
 import readJSON from "../../utils/readJson.js";
+
 
 async function renderPressGrid(idx) {
 	const imagesJson = await readJSON("images");

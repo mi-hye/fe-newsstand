@@ -1,3 +1,4 @@
+import { GRID,VISIBILITY } from "../../utils/Constants.js";
 import renderPressGrid from "./pressGrid.js";
 
 function handlePressSwiper() {
