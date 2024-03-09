@@ -1,37 +1,42 @@
 import readJSON from "./utils/readJSON.js";
 
-const news = await readJSON("news");
+async function initLatestNews() {
+	const newsJson = await readJSON("news");
 
-const firstNews = news.slice(0, 5);
-const secondNews = news.slice(5, 10);
-const [firstArea, secondArea] = document.querySelectorAll(
-	".latest-news__rolling"
-);
+	const leftNews = newsJson.slice(0, ROLLING.newsCount);
+	const rightNews = newsJson.slice(
+		ROLLING.newsCount,
+		ROLLING.newsCount + 5
+	);
+	const [leftArea, rightArea] = document.querySelectorAll(
+		".latest-news__rolling"
+	);
 
-AddLatestNews(firstArea, firstNews, 4000);
-AddLatestNews(secondArea, secondNews, 5000);
+	addLatestNews(leftArea, leftNews, ROLLING.fourSec);
+	addLatestNews(rightArea, rightNews, ROLLING.fiveSec);
+}
 
-function AddLatestNews(rollingArea, news, delay) {
+function addLatestNews(rollingArea, newsJson, delay) {
 	let interval;
-	let idx = 0;
+	let idx = ROLLING.firstNewsIdx;
 
 	const createLatestNews = (idx) => {
 		rollingArea.innerHTML = `
-		<a href="${news[idx].href}" class="latest-news__rolling--befor-hover">
-		${news[idx].text}
+		<a href="${newsJson[idx].href}" class="latest-news__rolling--befor-hover">
+		${newsJson[idx].text}
 		</a>
 		`;
 	};
 
-	const startNewChanging = () => {
+	const startNewsRolling = () => {
 		interval = setInterval(() => {
-			if (idx === 4) idx = 0;
+			if (idx === ROLLING.lastNewsIdx) idx = ROLLING.firstNewsIdx;
 			else idx += 1;
 			createLatestNews(idx);
 		}, delay);
 	};
 
-	const stopNewChanging = () => {
+	const stopNewsRolling = () => {
 		clearInterval(interval);
 		const currentNews = rollingArea.querySelector("a");
 		currentNews.classList = "latest-news__rolling--stop";
@@ -40,10 +45,12 @@ function AddLatestNews(rollingArea, news, delay) {
 	rollingArea.addEventListener("mouseleave", () => {
 		const currentNews = rollingArea.querySelector("a");
 		currentNews.classList = "latest-news__rolling--after-hover";
-		startNewChanging();
+		startNewsRolling();
 	});
-	rollingArea.addEventListener("mouseenter", stopNewChanging);
+	rollingArea.addEventListener("mouseenter", stopNewsRolling);
 
 	createLatestNews(idx);
-	startNewChanging();
+	startNewsRolling();
 }
+
+initLatestNews();
