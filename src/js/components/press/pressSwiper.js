@@ -1,5 +1,5 @@
-import { GRID,VISIBILITY } from "../../utils/Constants.js";
-import renderPressGrid from "./pressGrid.js";
+import { GRID, VISIBILITY } from "../../utils/Constants.js";
+import Grid from "./Grid.js";
 
 function handlePressSwiper() {
 	const [left, right] = document.querySelectorAll(".press__grid-wrap__button > i");
@@ -8,13 +8,13 @@ function handlePressSwiper() {
 	left.addEventListener("click", () => {
 		if (!idx) idx = GRID.firstPageIdx;
 		else idx -= 1;
-		renderPressGrid(idx);
+		Grid.render(idx);
 		controlVisibility(idx, { left, right });
 	});
 	right.addEventListener("click", () => {
 		if (idx > 2) idx = GRID.lastPageIdx;
 		else idx += 1;
-		renderPressGrid(idx);
+		Grid.render(idx);
 		controlVisibility(idx, { left, right });
 	});
 
@@ -47,4 +47,4 @@ function toggleVisibility(direction, flag) {
 	}
 }
 
-handlePressSwiper();
+export default handlePressSwiper;
