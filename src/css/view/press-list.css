@@ -20,6 +20,7 @@
 .press__list__nav__item {
 	display: flex;
 	align-items: center;
+	position: relative;
 	box-sizing: border-box;
 	padding: 0px 10px;
 	height: 100%;
@@ -28,11 +29,31 @@
 	white-space: nowrap;
 	font-weight: var(--main-weight);
 	color: var(--main-font-color);
-	transition: padding-right 0.5s ease-in-out;
+	transition: padding 0.5s ease-in-out;
+	&:hover {
+		padding-right: 70px;
+		background-color: rgba(196, 211, 255, 0.8);
+		color: #fff;
+	}
+	&:hover::after {
+		animation: fill 10s;
+	}
+	&::after {
+		content: "";
+		position: absolute;
+		top: 0;
+		left: 0;
+		height: 100%;
+		z-index: 1;
+		background: rgb(40, 86, 223);
+	}
 }
 
-.press__list__nav__item:hover { /*나중에 클래스로 변경*/
-	padding-right: 70px;
-	background-color: rgba(132, 158, 225, 0.8);
-	color: white;
+@keyframes fill {
+	from {
+		width: 0;
+	}
+	to {
+		width: 100%;
+	}
 }

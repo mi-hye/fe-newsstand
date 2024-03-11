@@ -3,7 +3,7 @@ import initLatestNews from "./components/latestNews/latestNews.js";
 import Grid from "./components/press/Grid.js";
 import togglePressNaviTab from "./components/press/pressNavigation.js";
 
-NewsHeader.newsHeaderReload();
+NewsHeader.reload();
 NewsHeader.initDate();
 initLatestNews();
 Grid.init();
