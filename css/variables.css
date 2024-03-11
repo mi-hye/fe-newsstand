@@ -1,7 +1,0 @@
-:root {
-	--gray: #5f6d75;
-	--blue: #4361cf;
-	--main-border: 2px solid rgba(var(--gray-rgb), 0.3);
-	--gray-rgb: 177, 177, 177;
-	--deep-gray-rgb: 148, 148, 148;
-}

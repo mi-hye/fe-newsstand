@@ -1,0 +1,38 @@
+.press__list-wrap {
+	display: none;
+}
+
+.press__list-wrap.active {
+	display: block;
+}
+
+.press__list-wrap {
+	margin-top: 20px;
+	border: var(--main-border);
+	background-color: var(--gray-bacground);
+}
+
+.press__list__nav {
+	height: 32px;
+	display: flex;
+}
+
+.press__list__nav__item {
+	display: flex;
+	align-items: center;
+	box-sizing: border-box;
+	padding: 0px 10px;
+	height: 100%;
+	cursor: pointer;
+	font-size: 12px;
+	white-space: nowrap;
+	font-weight: var(--main-weight);
+	color: var(--main-font-color);
+	transition: padding-right 0.5s ease-in-out;
+}
+
+.press__list__nav__item:hover { /*나중에 클래스로 변경*/
+	padding-right: 70px;
+	background-color: rgba(132, 158, 225, 0.8);
+	color: white;
+}
