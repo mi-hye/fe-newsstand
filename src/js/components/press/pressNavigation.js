@@ -8,7 +8,7 @@ const addActive = (icon, wrap) => {
 	wrap.classList.add("active");
 };
 
-function toggleIconTab() {
+function togglePressNaviTab() {
 	const [listIcon, gridIcon] = document.querySelectorAll(".press__nav__icons-column i");
 	const [gridWrap, listWrap] = document.querySelectorAll(".press > div");
 
@@ -23,4 +23,4 @@ function toggleIconTab() {
 	});
 }
 
-toggleIconTab();
+export default togglePressNaviTab;
