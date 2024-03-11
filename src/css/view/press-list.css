@@ -1,9 +1,8 @@
 .press__list-wrap {
 	display: none;
-}
-
-.press__list-wrap.active {
-	display: block;
+	&.active {
+		display: block;
+	}
 }
 
 .press__list-wrap {
@@ -30,13 +29,13 @@
 	font-weight: var(--main-weight);
 	color: var(--main-font-color);
 	transition: padding 0.5s ease-in-out;
+	span {
+		z-index: 1;
+	}
 	&:hover {
 		padding-right: 70px;
 		background-color: rgba(196, 211, 255, 0.8);
 		color: #fff;
-	}
-	&:hover::after {
-		animation: fill 10s;
 	}
 	&::after {
 		content: "";
@@ -44,8 +43,11 @@
 		top: 0;
 		left: 0;
 		height: 100%;
-		z-index: 1;
-		background: rgb(40, 86, 223);
+		z-index: 0;
+		background: var(--blue);
+	}
+	&:hover::after {
+		animation: fill 6s linear;
 	}
 }
 
