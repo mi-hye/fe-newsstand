@@ -62,7 +62,7 @@
 	border: var(--main-border);
 	border-top: 0px;
 	display: flex;
-	flex-direction: column;
+	justify-content: center;
 }
 
 .press__list__news-top {
@@ -93,8 +93,15 @@
 	}
 }
 
+.press__list__news-wrap {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+}
+
 .press__list__news-description {
 	display: flex;
+	justify-content: space-evenly;
 	margin-left: 20px;
 	font-size: 12px;
 }
@@ -114,7 +121,7 @@
 }
 
 .press__list__news-description__right {
-	margin-left: 20px;
+	margin: 0px 20px;
 	& li {
 		margin-top: 17px;
 		font-weight: var(--main-weight);
