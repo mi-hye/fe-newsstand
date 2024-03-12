@@ -1,3 +1,4 @@
-./nodejs/node_modules
-./nodejs/package-lock.json
+.src/nodejs/node_modules
+.src/nodejs/package-lock.json
 .vscode
+.github
