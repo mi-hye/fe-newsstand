@@ -27,6 +27,10 @@ const getDescriptionRight = async (page) =>
 	}, NEWS_DESCRIPTION_RIGHT);
 
 async function getSingleNews(page) {
+	await page.waitForSelector(NEWS_TOP);
+	await page.waitForSelector(NEWS_DESCRIPTION_LEFT);
+	await page.waitForSelector(NEWS_DESCRIPTION_RIGHT);
+
 	const header = await getHeader(page);
 	const descriptionLeft = await getDescriptionLeft(page);
 	const descriptionRight = await getDescriptionRight(page);
