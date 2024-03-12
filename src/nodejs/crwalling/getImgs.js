@@ -1,6 +1,6 @@
 const NEWS_LOGO = ".news_logo";
 const GRID_BUTTON = ".ContentPagingView-module__btn_next___ZBhby";
-const GRID_PAGE_COUNT = 4;
+const GRID_PAGE_COUNT = 3;
 
 const getImgElements = async (page) =>
 	await page.evaluate((NEWS_LOGO) => {

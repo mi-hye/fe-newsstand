@@ -1,7 +1,10 @@
 import { setInterval } from "timers/promises";
 
+const WAIT_TIME = 33000;
+const INTERVAL_TIME = 3000;
+
 const getLatestNews = async (page, latestNews) => {
-	for await (const startTime of setInterval(3000, Date.now())) {
+	for await (const startTime of setInterval(INTERVAL_TIME, Date.now())) {
 		const now = Date.now();
 		const news = await page.evaluate(() => {
 			const a = document.querySelector(".ContentHeaderSubView-module__news_title___wuetX > a");
@@ -9,7 +12,7 @@ const getLatestNews = async (page, latestNews) => {
 		});
 
 		latestNews.push(news);
-		if (now - startTime >= 33000) {
+		if (now - startTime >= WAIT_TIME) {
 			break;
 		}
 	}
