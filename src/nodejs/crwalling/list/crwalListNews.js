@@ -1,6 +1,6 @@
 import puppeteer from "puppeteer";
 import getSingleNews from "./getSingleNews.js";
-import saveJSON from "../File.js";
+import saveJSON from "../../File.js";
 
 const LIST_BUTTON_TRIGGER = ".ContentPagingView-module__btn_view_list___j7eNR";
 const NEXT_NEWS_TRIGGER = ".ContentPagingView-module__btn_next___ZBhby";
