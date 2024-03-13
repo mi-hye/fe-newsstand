@@ -123,7 +123,7 @@
 .press__list__news-description {
 	display: flex;
 	justify-content: space-evenly;
-	margin-left: 20px;
+	margin: 0px 20px 20px 20px;
 	font-size: 12px;
 }
 
@@ -138,12 +138,16 @@
 		font-size: 13px;
 		margin-top: 15px;
 		font-weight: 600;
+		max-width: 300px;
 	}
 }
 
 .press__list__news-description__right {
-	margin: 0px 20px;
+	width: 50%;
 	& li {
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
 		margin-top: 17px;
 		font-weight: var(--main-weight);
 		color: #373737;
