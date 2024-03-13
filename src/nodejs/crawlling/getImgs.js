@@ -1,6 +1,6 @@
 const NEWS_LOGO = ".news_logo";
 const GRID_BUTTON = ".ContentPagingView-module__btn_next___ZBhby";
-const GRID_PAGE_COUNT = 3;
+const GRID_PAGE_COUNT = 4;
 
 const getImgElements = async (page) =>
 	await page.evaluate((NEWS_LOGO) => {
@@ -11,11 +11,11 @@ const getImgElements = async (page) =>
 	}, NEWS_LOGO);
 
 async function getAllImgs(page) {
-	return Array.from({ length: GRID_PAGE_COUNT }).reduce(async (prevPromise, _) => {
+	return Array.from({ length: GRID_PAGE_COUNT }).reduce(async (prevPromise, _, idx) => {
 		const prev = await prevPromise;
 		const singlePageImgs = await getImgElements(page);
 		prev.push(singlePageImgs);
-		await page.click(GRID_BUTTON);
+		if (idx < 3) await page.click(GRID_BUTTON);
 		return prev;
 	}, []);
 }
