@@ -21,7 +21,7 @@ export const ROLLING = Object.freeze({
 
 export const LIST_TAB = [
 	"종합/경제",
-	"방송 통신",
+	"방송/통신",
 	"IT",
 	"영자지",
 	"스포츠/연예",
