@@ -33,12 +33,13 @@
 		position: absolute;
 		font-size: 10px;
 		opacity: 0;
+		transition: opacity 0.3s ease-in-out;
 	}
 	.curr {
-		right: 25%;
+		right: 30px;
 	}
 	.total {
-		right: 10%;
+		right: 10px;
 		color: #b4b4b4b0;
 		font-weight: var(--main-weight);
 	}
