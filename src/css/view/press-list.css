@@ -29,7 +29,7 @@
 	span {
 		z-index: 1;
 	}
-	&:hover {
+	&[aria-selected="true"] {
 		padding-right: 70px;
 		background-color: rgba(196, 211, 255, 0.8);
 		color: #fff;
@@ -43,8 +43,8 @@
 		z-index: 0;
 		background: var(--blue);
 	}
-	&:hover::after {
-		animation: fill 6s linear;
+	&[aria-selected="true"]::after {
+		animation: fill 6s linear infinite;
 	}
 }
 
