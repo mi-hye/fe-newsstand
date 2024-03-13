@@ -2,13 +2,13 @@
 @import "reset.css";
 @import "variables.css";
 
-/* Components */
-@import "components/news-header.css";
-@import "components/latest-news.css";
-@import "components/press.css";
-@import "components/press-grid.css";
-@import "components/press-list.css";
-@import "components/swiper.css";
+/* View */
+@import "view/news-header.css";
+@import "view/latest-news.css";
+@import "view/press.css";
+@import "view/press-grid.css";
+@import "view/press-list.css";
+@import "view/swiper.css";
 
 body {
 	height: 100vh;

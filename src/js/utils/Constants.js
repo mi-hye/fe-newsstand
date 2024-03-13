@@ -18,3 +18,13 @@ export const ROLLING = Object.freeze({
 	firstNewsIdx: 0,
 	lastNewsIdx: 4,
 });
+
+export const LIST_TAB = [
+	"종합/경제",
+	"방송/통신",
+	"IT",
+	"영자지",
+	"스포츠/연예",
+	"매거진/전문지",
+	"지역",
+];

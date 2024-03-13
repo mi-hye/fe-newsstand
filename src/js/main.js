@@ -1,6 +1,12 @@
-import newsHeader from "./components/newsHeader/newsHeader.js";
-import initLatestNews from "./components/latest-news/latestNews.js";
+import NewsHeader from "./view/newsHeader/NewsHeader.js";
+import initLatestNews from "./view/latestNews/latestNews.js";
+import Grid from "./view/press/Grid.js";
+import togglePressNaviTab from "./view/press/pressNavigation.js";
+import initListNews from "./view/list/initListNews.js";
 
-newsHeader.newsHeaderReload();
-newsHeader.initDate();
+NewsHeader.reload();
+NewsHeader.initDate();
 initLatestNews();
+Grid.init();
+togglePressNaviTab();
+initListNews();
