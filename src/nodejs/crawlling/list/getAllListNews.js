@@ -41,7 +41,7 @@ const getCategory = async (page) => {
 };
 
 async function getAllNews(page) {
-	return Array.from({ length: CATEGORY_COUNT }).reduce(async (prevPromise, _) => {
+	const allNews = await Array.from({ length: CATEGORY_COUNT }).reduce(async (prevPromise, _) => {
 		const prev = await prevPromise;
 		const totalCount = await getTotalNewsCount(page);
 		const category = await getCategory(page);
@@ -49,6 +49,7 @@ async function getAllNews(page) {
 		prev.push({ [`${category}`]: categoryNews });
 		return prev;
 	}, []);
+	return Object.assign({}, ...allNews);
 }
 async function getAllListNews(page) {
 	await page.click(LIST_BUTTON_TRIGGER);
