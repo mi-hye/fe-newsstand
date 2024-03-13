@@ -1,9 +1,9 @@
 import { ROLLING } from "../../utils/Constants.js";
-import readJSON from "../../utils/readJson.js";
+import readJSON from "../../utils/readJSON.js";
 import Rolling from "./rolling.js";
 
 async function initLatestNews() {
-	const newsJson = await readJSON("news");
+	const newsJson = await readJSON("latestNews");
 
 	const leftNews = newsJson.slice(0, ROLLING.newsCount);
 	const rightNews = newsJson.slice(ROLLING.newsCount, ROLLING.newsCount + 5);

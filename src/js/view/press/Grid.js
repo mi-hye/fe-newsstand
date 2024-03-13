@@ -1,9 +1,9 @@
 import { GRID } from "../../utils/Constants.js";
-import readJSON from "../../utils/readJson.js";
+import readJSON from "../../utils/readJSON.js";
 import handlePressSwiper from "./pressSwiper.js";
 
 const Grid = {
-	imagesJson: await readJSON("images"),
+	imagesJson: await readJSON("gridImages"),
 	init: () => {
 		Grid.render(GRID.firstPageIdx);
 		handlePressSwiper();
