@@ -1,12 +1,12 @@
 import { GRID } from "../../utils/Constants.js";
 import readJSON from "../../utils/readJSON.js";
-import handlePressSwiper from "./pressSwiper.js";
+import controlSwiper from "../../components/swiper.js";
 
 const Grid = {
 	imagesJson: await readJSON("gridImages"),
 	init: () => {
 		Grid.render(GRID.firstPageIdx);
-		handlePressSwiper();
+		controlSwiper(GRID.firstPageIdx, GRID.lastPageIdx);
 	},
 	render: (idx) => {
 		const gridWrap = document.querySelector(".press__grid-wrap__grid");

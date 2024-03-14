@@ -1,5 +1,6 @@
 .press {
 	padding: 10px 20px;
+	position: relative;
 }
 .press__nav {
 	display: flex;
