@@ -15,12 +15,11 @@ function renderTab(allNewsJson) {
 
 		return prev;
 	}, "");
-
 	addClickEvent(tabList, allNewsJson);
 }
 
 function addClickEvent(tabList, allNewsJson) {
-	const intervalBox = ["default"];
+	const intervalBox = ["dumy"];
 	tabList.addEventListener("click", (e) => {
 		clearInterval(intervalBox[0]);
 		const current = handleProgressEvent(e);
@@ -35,7 +34,6 @@ function handleProgressEvent(e) {
 	const currentTab = e.target;
 	const li = currentTab.closest("li");
 	li.ariaSelected = true;
-
 	return li;
 }
 

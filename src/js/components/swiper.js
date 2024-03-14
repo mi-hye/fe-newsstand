@@ -13,7 +13,6 @@ const hidden = (el) => {
 function controlSwiper(firstPageIdx, lastPageIdx, render) {
 	const [left, right] = document.querySelectorAll(".swiper");
 	let idx = firstPageIdx;
-
 	left.addEventListener("click", () => {
 		if (!idx) idx = firstPageIdx;
 		else idx -= 1;
