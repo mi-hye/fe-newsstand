@@ -32,4 +32,5 @@ export const LIST_TAB = [
 export const LIST = Object.freeze({
 	firstPageIdx: 0,
 	lastPageIdx: (currNews) => currNews.length - 1,
+	progressDelay: 6000,
 });

@@ -20,18 +20,18 @@ function renderTab(allNewsJson) {
 }
 
 function addClickEvent(tabList, allNewsJson) {
+	const intervalBox = ["default"];
 	tabList.addEventListener("click", (e) => {
+		clearInterval(intervalBox[0]);
 		const current = handleProgressEvent(e);
-		const { currNews, renderNextNews } = renderCategoryNews(current, allNewsJson);
+		const { currNews, renderNextNews } = renderCategoryNews(current, allNewsJson, intervalBox);
 		controlSwiper(LIST.firstPageIdx, LIST.lastPageIdx(currNews), renderNextNews);
 	});
 }
 
 function handleProgressEvent(e) {
 	const tabs = document.querySelectorAll(".press__list__nav__item");
-	tabs.forEach((tab) => {
-		tab.ariaSelected = false;
-	});
+	tabs.forEach((tab) => (tab.ariaSelected = false));
 	const currentTab = e.target;
 	const li = currentTab.closest("li");
 	li.ariaSelected = true;

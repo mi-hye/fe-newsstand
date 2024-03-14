@@ -1,3 +1,5 @@
+import { LIST } from "../../utils/Constants.js";
+
 const header = (headerJson) => {
 	const { aHref, imgSrc, spanText } = headerJson;
 	return `<a href=${aHref}>
@@ -24,7 +26,24 @@ const descriptionRight = (descRightArr) => {
 	return `${innerElements}</ul>`;
 };
 
-function renderCategoryNews(current, allNewsJson) {
+function resetAnimation(current) {
+	const animation = current.querySelector(".press__list__nav__item--animation");
+	animation.classList.remove("active");
+	void animation.offsetWidth;
+	animation.classList.add("active");
+}
+
+function resetInterval(intervalBox) {
+	clearInterval(intervalBox[0]);
+	const interval = setInterval(() => {
+		const [, right] = document.querySelectorAll(".swiper");
+		right.click();
+	}, LIST.progressDelay);
+	intervalBox.pop();
+	intervalBox.push(interval);
+}
+
+function renderCategoryNews(current, allNewsJson, intervalBox) {
 	const currText = current.querySelector("span").innerHTML;
 	const currNews = allNewsJson[currText];
 
@@ -32,9 +51,9 @@ function renderCategoryNews(current, allNewsJson) {
 	const [desLeft, desRight] = headerArea.nextElementSibling.children;
 
 	const renderNextNews = (currIdx) => {
+		resetInterval(intervalBox);
+		resetAnimation(current);
 		const currSpan = current.querySelector(".curr");
-		const animation = current.querySelector(".press__list__nav__item--animation");
-
 		const headerJson = currNews[currIdx].header;
 		const descLeftJson = currNews[currIdx].descriptionLeft;
 		const descRightArr = currNews[currIdx].descriptionRight;
@@ -43,13 +62,8 @@ function renderCategoryNews(current, allNewsJson) {
 		desLeft.innerHTML = descriptionLeft(descLeftJson);
 		desRight.innerHTML = descriptionRight(descRightArr);
 		currSpan.innerHTML = currIdx + 1;
-
-		animation.classList.remove("active");
-		void animation.offsetWidth;
-		animation.classList.add("active");
 	};
-
-	renderNextNews(0);
+	renderNextNews(LIST.firstPageIdx);
 
 	return { currNews, renderNextNews };
 }
