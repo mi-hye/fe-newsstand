@@ -32,6 +32,9 @@ function renderCategoryNews(current, allNewsJson) {
 	const [desLeft, desRight] = headerArea.nextElementSibling.children;
 
 	const renderNextNews = (currIdx) => {
+		const currSpan = current.querySelector(".curr");
+		const animation = current.querySelector(".press__list__nav__item--animation");
+
 		const headerJson = currNews[currIdx].header;
 		const descLeftJson = currNews[currIdx].descriptionLeft;
 		const descRightArr = currNews[currIdx].descriptionRight;
@@ -39,6 +42,11 @@ function renderCategoryNews(current, allNewsJson) {
 		headerArea.innerHTML = header(headerJson);
 		desLeft.innerHTML = descriptionLeft(descLeftJson);
 		desRight.innerHTML = descriptionRight(descRightArr);
+		currSpan.innerHTML = currIdx + 1;
+
+		animation.classList.remove("active");
+		void animation.offsetWidth;
+		animation.classList.add("active");
 	};
 
 	renderNextNews(0);
