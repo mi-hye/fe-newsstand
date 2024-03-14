@@ -21,6 +21,8 @@ function controlSwiper(firstPageIdx, lastPageIdx, render) {
 }
 
 function controlVisibility(idx, { left, right }, { firstPageIdx, lastPageIdx }) {
+	toggleVisibility(right, VISIBILITY.visible);
+	toggleVisibility(left, VISIBILITY.visible);
 	if (idx === firstPageIdx) {
 		toggleVisibility(left, VISIBILITY.hidden);
 		return;
@@ -29,8 +31,6 @@ function controlVisibility(idx, { left, right }, { firstPageIdx, lastPageIdx }) 
 		toggleVisibility(right, VISIBILITY.hidden);
 		return;
 	}
-	toggleVisibility(right, VISIBILITY.visible);
-	toggleVisibility(left, VISIBILITY.visible);
 }
 
 function toggleVisibility(direction, flag) {
