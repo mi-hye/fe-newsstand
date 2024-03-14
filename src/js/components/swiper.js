@@ -1,20 +1,19 @@
 import { VISIBILITY } from "../utils/Constants.js";
-import Grid from "../view/press/Grid.js";
 
-function controlSwiper(firstPageIdx, lastPageIdx) {
+function controlSwiper(firstPageIdx, lastPageIdx, render) {
 	const [left, right] = document.querySelectorAll(".swiper");
 	let idx = firstPageIdx;
 
 	left.addEventListener("click", () => {
 		if (!idx) idx = firstPageIdx;
 		else idx -= 1;
-		Grid.render(idx);
+		render(idx);
 		controlVisibility(idx, { left, right }, { firstPageIdx, lastPageIdx });
 	});
 	right.addEventListener("click", () => {
 		if (idx > lastPageIdx - 1) idx = lastPageIdx;
 		else idx += 1;
-		Grid.render(idx);
+		render(idx);
 		controlVisibility(idx, { left, right }, { firstPageIdx, lastPageIdx });
 	});
 

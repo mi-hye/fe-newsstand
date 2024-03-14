@@ -6,7 +6,7 @@ const Grid = {
 	imagesJson: await readJSON("gridImages"),
 	init: () => {
 		Grid.render(GRID.firstPageIdx);
-		controlSwiper(GRID.firstPageIdx, GRID.lastPageIdx);
+		controlSwiper(GRID.firstPageIdx, GRID.lastPageIdx, Grid.render);
 	},
 	render: (idx) => {
 		const gridWrap = document.querySelector(".press__grid-wrap__grid");
