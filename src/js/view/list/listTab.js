@@ -1,4 +1,5 @@
-import { LIST_TAB } from "../../utils/Constants.js";
+import controlSwiper from "../../components/swiper.js";
+import { LIST_TAB, LIST } from "../../utils/Constants.js";
 import renderCategoryNews from "./renderCategoryNews.js";
 
 function renderTab(allNewsJson) {
@@ -20,7 +21,8 @@ function renderTab(allNewsJson) {
 function addClickEvent(tabList, allNewsJson) {
 	tabList.addEventListener("click", (e) => {
 		const current = handleProgressEvent(e);
-		renderCategoryNews(current, allNewsJson);
+		const { currNews, renderNextNews } = renderCategoryNews(current, allNewsJson);
+		controlSwiper(LIST.firstPageIdx, LIST.lastPageIdx(currNews), renderNextNews);
 	});
 }
 

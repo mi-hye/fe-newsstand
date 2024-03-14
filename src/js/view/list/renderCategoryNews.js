@@ -29,15 +29,21 @@ function renderCategoryNews(current, allNewsJson) {
 	const currNews = allNewsJson[currText];
 
 	const headerArea = document.querySelector(".press__list__news-top");
-	const [desLeftArea, desRightArea] = headerArea.nextElementSibling.children;
+	const [desLeft, desRight] = headerArea.nextElementSibling.children;
 
-	const headerJson = currNews[0].header;
-	const descLeftJson = currNews[0].descriptionLeft;
-	const descRightArr = currNews[0].descriptionRight;
+	const renderNextNews = (currIdx) => {
+		const headerJson = currNews[currIdx].header;
+		const descLeftJson = currNews[currIdx].descriptionLeft;
+		const descRightArr = currNews[currIdx].descriptionRight;
 
-	headerArea.innerHTML = header(headerJson);
-	desLeftArea.innerHTML = descriptionLeft(descLeftJson);
-	desRightArea.innerHTML = descriptionRight(descRightArr);
+		headerArea.innerHTML = header(headerJson);
+		desLeft.innerHTML = descriptionLeft(descLeftJson);
+		desRight.innerHTML = descriptionRight(descRightArr);
+	};
+
+	renderNextNews(0);
+
+	return { currNews, renderNextNews };
 }
 
 export default renderCategoryNews;

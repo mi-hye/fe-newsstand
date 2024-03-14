@@ -28,3 +28,8 @@ export const LIST_TAB = [
 	"매거진/전문지",
 	"지역",
 ];
+
+export const LIST = Object.freeze({
+	firstPageIdx: 0,
+	lastPageIdx: (currNews) => currNews.length - 1,
+});
