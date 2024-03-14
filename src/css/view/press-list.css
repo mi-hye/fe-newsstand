@@ -54,20 +54,6 @@
 			opacity: 1;
 		}
 	}
-	/* &::after {
-		content: "";
-		position: absolute;
-		top: 0;
-		left: 0;
-		height: 100%;
-		z-index: 0;
-		background: var(--blue);
-	}
-	&[aria-selected="true"]::after {
-		border: 1px solid black;
-		animation: fill 6s linear infinite;
-	} */
-
 	&[aria-selected="true"] > .active {
 		animation: fill 6s linear infinite;
 	}
