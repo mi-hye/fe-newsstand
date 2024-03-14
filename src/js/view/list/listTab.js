@@ -7,11 +7,12 @@ function renderTab(allNewsJson) {
 	tabList.innerHTML = LIST_TAB.reduce((prev, curr) => {
 		const length = allNewsJson[curr].length.toString().padEnd(2, " ").replace(" ", "&nbsp;&nbsp;");
 		prev += `<li class="press__list__nav__item" role="tab" tabindex="0">
-		<span>${curr}</span>
-		<span class="press__list__nav__item__new-count curr">1</span>
-		<span class="press__list__nav__item__new-count total">/ ${length}</span>
-	</li>
-`;
+					<span>${curr}</span>
+					<span class="press__list__nav__item__new-count curr">1</span>
+					<span class="press__list__nav__item__new-count total">/ ${length}</span>
+					<li class="press__list__nav__item--animation"></li>
+				</li>`;
+
 		return prev;
 	}, "");
 
