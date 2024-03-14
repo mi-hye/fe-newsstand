@@ -1,6 +1,6 @@
 import { LIST } from "../../utils/Constants.js";
 
-const header = (headerJson) => {
+const rederHeader = (headerJson) => {
 	const { aHref, imgSrc, spanText } = headerJson;
 	return `<a href=${aHref}>
 				<img src=${imgSrc} />
@@ -9,7 +9,7 @@ const header = (headerJson) => {
 			<button>+ 구독하기</button>`;
 };
 
-const descriptionLeft = (descLeftJson) => {
+const rederDescLeft = (descLeftJson) => {
 	const { aHref, aText, imgSrc } = descLeftJson;
 	return `<a href=${aHref}>
 				<img src="${imgSrc}"/>
@@ -17,7 +17,7 @@ const descriptionLeft = (descLeftJson) => {
 			<a href=${aHref}>${aText}</a>`;
 };
 
-const descriptionRight = (descRightArr) => {
+const rederDescRight = (descRightArr) => {
 	const innerElements = descRightArr.reduce((prev, curr) => {
 		prev += `<li><a href=${curr.href}>${curr.text}</a></li>`;
 		return prev;
@@ -25,6 +25,8 @@ const descriptionRight = (descRightArr) => {
 
 	return `${innerElements}</ul>`;
 };
+
+const setInnerHTML = (area, renderer, json) => (area.innerHTML = renderer(json));
 
 function resetAnimation(current) {
 	const animation = current.querySelector(".press__list__nav__item--animation");
@@ -54,13 +56,11 @@ function renderCategoryNews(current, allNewsJson, intervalBox) {
 		resetInterval(intervalBox);
 		resetAnimation(current);
 		const currSpan = current.querySelector(".curr");
-		const headerJson = currNews[currIdx].header;
-		const descLeftJson = currNews[currIdx].descriptionLeft;
-		const descRightArr = currNews[currIdx].descriptionRight;
+		const { header, descriptionLeft, descriptionRight } = currNews[currIdx];
 
-		headerArea.innerHTML = header(headerJson);
-		desLeft.innerHTML = descriptionLeft(descLeftJson);
-		desRight.innerHTML = descriptionRight(descRightArr);
+		setInnerHTML(headerArea, rederHeader, header);
+		setInnerHTML(desLeft, rederDescLeft, descriptionLeft);
+		setInnerHTML(desRight, rederDescRight, descriptionRight);
 		currSpan.innerHTML = currIdx + 1;
 	};
 	renderNextNews(LIST.firstPageIdx);
