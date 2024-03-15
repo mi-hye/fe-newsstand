@@ -1,5 +1,5 @@
-import controlSwiper from "../../components/swiper.js";
-import { LIST_TAB, LIST } from "../../utils/Constants.js";
+import controlSwiper from "../../../components/swiper.js";
+import { LIST_TAB, LIST } from "../../../utils/Constants.js";
 import renderCategoryNews from "./renderCategoryNews.js";
 
 function renderTab(allNewsJson) {

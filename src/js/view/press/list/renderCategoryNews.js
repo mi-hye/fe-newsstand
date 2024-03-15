@@ -1,4 +1,4 @@
-import { LIST } from "../../utils/Constants.js";
+import { LIST } from "../../../utils/Constants.js";
 
 const rederHeader = (headerJson) => {
 	const { aHref, imgSrc, spanText } = headerJson;
@@ -38,7 +38,7 @@ function resetAnimation(current) {
 function resetInterval(intervalBox) {
 	clearInterval(intervalBox[0]);
 	const interval = setInterval(() => {
-		const [, right] = document.querySelectorAll(".swiper");
+		const right = document.querySelector("#right");
 		right.click();
 	}, LIST.progressDelay);
 	intervalBox.pop();
