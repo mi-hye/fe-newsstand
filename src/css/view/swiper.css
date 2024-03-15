@@ -12,10 +12,12 @@
 	color: rgba(var(--gray-rgb), 0.9);
 }
 
-.swiper.fa-chevron-left {
+#left {
 	left: -7%;
+	visibility: hidden;
+	opacity: 0;
 }
 
-.swiper.fa-chevron-right {
+#right {
 	right: -7%;
 }
