@@ -1,11 +1,14 @@
 import readJSON from "../../utils/readJSON.js";
 import renderTab from "./listTab.js";
 
-const LIST = {
+const List = {
 	allNewsJson: await readJSON("allListNews"),
 	init: () => {
-		renderTab(LIST.allNewsJson);
+		renderTab(List.allNewsJson);
+
+		const firstCategory = document.querySelector(".press__list__nav__item");
+		firstCategory.click();
 	},
 };
 
-export default LIST;
+export default List;
