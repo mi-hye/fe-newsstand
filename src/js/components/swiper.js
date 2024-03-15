@@ -1,54 +1,52 @@
-import { VISIBILITY } from "../utils/Constants.js";
-
-const visible = (el) => {
-	el.visibility = "visible";
-	el.opacity = "100";
-};
-
-const hidden = (el) => {
-	el.visibility = "hidden";
-	el.opacity = "0";
-};
+import SwiperVisibility from "./SwiperVisibility.js";
 
 function controlSwiper(firstPageIdx, lastPageIdx, render) {
-	const [left, right] = document.querySelectorAll(".swiper");
-	let idx = firstPageIdx;
-	left.addEventListener("click", () => {
-		if (!idx) idx = firstPageIdx;
-		else idx -= 1;
-		render(idx);
-		setVisibility(idx, { left, right }, { firstPageIdx, lastPageIdx });
-	});
-	right.addEventListener("click", () => {
-		if (idx > lastPageIdx - 1) idx = lastPageIdx;
-		else idx += 1;
-		render(idx);
-		setVisibility(idx, { left, right }, { firstPageIdx, lastPageIdx });
-	});
+	const desc = document.querySelector(".press__desc");
+	let currIdx = firstPageIdx;
+	desc.addEventListener("click", (e) => {
+		if (e.target.id === "right" && currIdx !== lastPageIdx) currIdx += 1;
+		if (e.target.id === "left" && currIdx) currIdx -= 1;
 
-	setVisibility(firstPageIdx, { left, right }, { firstPageIdx, lastPageIdx });
+		isList()
+			? swipeList(currIdx, firstPageIdx, lastPageIdx, render)
+			: swipeGrid(currIdx, firstPageIdx, lastPageIdx, render);
+	});
 }
 
-function setVisibility(idx, { left, right }, { firstPageIdx, lastPageIdx }) {
-	toggleVisibility(right, VISIBILITY.visible);
-	toggleVisibility(left, VISIBILITY.visible);
-	if (idx === firstPageIdx) {
-		toggleVisibility(left, VISIBILITY.hidden);
-	}
-	if (idx === lastPageIdx) {
-		toggleVisibility(right, VISIBILITY.hidden);
-	}
+function isList() {
+	const [listIcon, _] = document.querySelectorAll(".press__nav__icons-column i");
+	return Array.from(listIcon.classList).find((cls) => cls === "active") ? true : false;
 }
 
-function toggleVisibility(direction, flag) {
-	if (flag === VISIBILITY.hidden) {
-		hidden(direction.style);
-		return;
+function swipeGrid(currIdx, firstPageIdx, lastPageIdx, render) {
+	render(currIdx);
+	SwiperVisibility.set(currIdx, firstPageIdx, lastPageIdx);
+}
+
+function swipeList(currIdx, firstPageIdx, lastPageIdx, render) {
+	const currSwiper = d.target.id;
+	const listTabs = document.querySelectorAll(".press__list__nav__item");
+	const currTabIdx = Array.from(listTabs)
+		.map((v) => v.ariaSelected)
+		.indexOf("true");
+
+	if (currIdx === firstPageIdx && currSwiper === "left") {
+		//0일때 왼쪽이면 탭변경
+		clickNextListTab(currTabIdx, listTabs);
 	}
-	if (flag === VISIBILITY.visible) {
-		visible(direction.style);
-		return;
+
+	if (currIdx === lastPageIdx && currSwiper === "right") {
+		//마지막일때 오른쪽이면 탭변경
+		clickNextListTab(currTabIdx, listTabs);
 	}
+	render(currIdx);
+}
+
+function clickNextListTab(currTabIdx, listTabs) {
+	let nextTabIdx = currTabIdx + 1;
+	if (currTabIdx === 0) nextTabIdx = 6;
+	if (currTabIdx === 6) nextTabIdx = 0;
+	listTabs[nextTabIdx].click();
 }
 
 export default controlSwiper;
