@@ -34,7 +34,7 @@
 	font-weight: var(--main-weight);
 	color: var(--main-font-color);
 	cursor: pointer;
-	.active {
+	&.active {
 		font-weight: 700;
 		color: black;
 	}
