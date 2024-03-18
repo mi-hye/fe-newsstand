@@ -1,3 +1,5 @@
+import { STATE } from "../../utils/Constants";
+
 const viewState = {
 	currentPressView: "total",
 	currentDisplay: "grid",
@@ -16,10 +18,10 @@ for (const key in viewState) {
 }
 
 const dispatch = (currentView) => {
-	if (currentView === "total" || currentView === "sub") {
+	if (currentView === STATE.total || currentView === STATE.sub) {
 		viewState.currentPressView = currentView;
 	}
-	if (currentView === "grid" || currentView === "list") {
+	if (currentView === STATE.grid || currentView === STATE.list) {
 		viewState.currentPressView = currentView;
 	}
 };
