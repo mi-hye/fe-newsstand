@@ -1,5 +1,6 @@
 .press {
 	padding: 10px 20px;
+	position: relative;
 }
 .press__nav {
 	display: flex;
@@ -38,11 +39,6 @@
 		color: black;
 	}
 }
-
-/* .press__nav__press-column > div {
-	font-weight: 700;
-	color: black;
-} */
 
 .press__nav__grid-icons {
 	margin-left: 30px;
