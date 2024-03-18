@@ -1,5 +1,5 @@
-// import Grid from "./Grid.js";
-// import List from "./list/List.js";
+import { STATE } from "../../utils/Constants.js";
+import dispatch from "./store.js";
 
 const removeActive = (icon, wrap) => {
 	icon.classList.remove("active");
@@ -18,13 +18,13 @@ function toggleDisplayTabs() {
 	listIcon.addEventListener("click", () => {
 		addActive(listIcon, listWrap);
 		removeActive(gridIcon, gridWrap);
-		// List.init();
+		dispatch(STATE.list);
 	});
 
 	gridIcon.addEventListener("click", () => {
 		addActive(gridIcon, gridWrap);
 		removeActive(listIcon, listWrap);
-		// Grid.init();
+		dispatch(STATE.grid);
 	});
 }
 

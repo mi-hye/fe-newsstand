@@ -34,3 +34,10 @@ export const LIST = Object.freeze({
 	lastPageIdx: (currNews) => currNews.length - 1,
 	progressDelay: 6000,
 });
+
+export const STATE = Object.freeze({
+	grid: "grid",
+	list: "list",
+	total: "total",
+	sub: "sub",
+});
