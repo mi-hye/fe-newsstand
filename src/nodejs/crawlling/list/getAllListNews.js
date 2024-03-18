@@ -13,13 +13,13 @@ const getTotalNewsCount = async (page) =>
 		return parseInt(totalCount);
 	}, TOTAL_NEWS_SPAN);
 
-async function getCategoryTotalNews(page, totalCount) {
+async function getCategoryTotalNews(page, totalCount, startIdx) {
 	await page.waitForSelector(NEXT_NEWS_TRIGGER);
 
 	const categoryNews = await Array.from({ length: totalCount }).reduce(
-		async (prevPromise, curr) => {
+		async (prevPromise, curr, idx) => {
 			const prev = await prevPromise;
-			curr = await getSingleNews(page);
+			curr = await getSingleNews(page, startIdx + idx);
 			prev.push(curr);
 			await page.click(NEXT_NEWS_TRIGGER);
 			return prev;
@@ -41,15 +41,20 @@ const getCategory = async (page) => {
 };
 
 async function getAllNews(page) {
+	const totalNews = [];
+	let startIdx = 0;
 	const allNews = await Array.from({ length: CATEGORY_COUNT }).reduce(async (prevPromise, _) => {
 		const prev = await prevPromise;
 		const totalCount = await getTotalNewsCount(page);
 		const category = await getCategory(page);
-		const categoryNews = await getCategoryTotalNews(page, totalCount);
-		prev.push({ [`${category}`]: categoryNews });
+		const categoryNews = await getCategoryTotalNews(page, totalCount, startIdx);
+		startIdx += totalCount;
+		totalNews.push(...categoryNews);
+		prev[`${category}`] = { totalCount, startIdx };
 		return prev;
-	}, []);
-	return Object.assign({}, ...allNews);
+	}, {});
+	allNews.totalNews = totalNews;
+	return allNews;
 }
 async function getAllListNews(page) {
 	await page.click(LIST_BUTTON_TRIGGER);

@@ -5,7 +5,7 @@ const NEWS_DESCRIPTION_RIGHT = ".MediaNewsView-module__desc_right___xZQJb a";
 const getHeader = async (page) =>
 	await page.evaluate((NEWS_TOP) => {
 		const [a, img, span] = document.querySelectorAll(NEWS_TOP);
-		return { aHref: a.href, imgSrc: img.src, spanText: span.innerText };
+		return { pressTitle: img.alt, aHref: a.href, imgSrc: img.src, spanText: span.innerText };
 	}, NEWS_TOP);
 
 const getDescriptionLeft = async (page) =>
@@ -26,7 +26,7 @@ const getDescriptionRight = async (page) =>
 		});
 	}, NEWS_DESCRIPTION_RIGHT);
 
-async function getSingleNews(page) {
+async function getSingleNews(page, id) {
 	await page.waitForSelector(NEWS_TOP);
 	await page.waitForSelector(NEWS_DESCRIPTION_LEFT);
 	await page.waitForSelector(NEWS_DESCRIPTION_RIGHT);
@@ -36,9 +36,11 @@ async function getSingleNews(page) {
 	const descriptionRight = await getDescriptionRight(page);
 
 	return {
+		id,
 		header,
 		descriptionLeft,
 		descriptionRight,
+		subscription: false,
 	};
 }
 
