@@ -1,9 +1,11 @@
 import SwiperVisibility from "./SwiperVisibility.js";
 
 function controlSwiper(firstPageIdx, lastPageIdx, render, display) {
-	const desc = document.querySelector(".press__swiper");
+	const swiper = document.querySelector(".press__swiper");
+	SwiperVisibility.init(display,firstPageIdx,lastPageIdx);
 	let currIdx = firstPageIdx;
-	desc.addEventListener("click", (e) => {
+
+	swiper.addEventListener("click", (e) => {
 		if (e.target.id === "right" && currIdx !== lastPageIdx) currIdx += 1;
 		if (e.target.id === "left" && currIdx) currIdx -= 1;
 

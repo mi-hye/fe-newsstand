@@ -3,7 +3,11 @@ import { VISIBILITY } from "../utils/Constants.js";
 const SwiperVisibility = {
 	left: document.querySelector("#left").style,
 	right: document.querySelector("#right").style,
-	init() {
+	init(display, firstPageIdx, lastPageIdx) {
+		if (display === "grid") {
+			SwiperVisibility.set(0, firstPageIdx, lastPageIdx);
+			return;
+		}
 		SwiperVisibility.visible(SwiperVisibility.right);
 		SwiperVisibility.visible(SwiperVisibility.left);
 	},
