@@ -8,7 +8,10 @@
 @import "view/press.css";
 @import "view/press-grid.css";
 @import "view/press-list.css";
-@import "view/swiper.css";
+
+/* components */
+@import "./components/swiper.css";
+@import "./components/modal.css";
 
 body {
 	height: 100vh;
