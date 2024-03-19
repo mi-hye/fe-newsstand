@@ -1,5 +1,5 @@
 import { STATE } from "../../utils/Constants.js";
-import dispatch from "./store.js";
+import {dispatch} from "./store.js";
 
 const removeActive = (icon, wrap) => {
 	icon.classList.remove("active");

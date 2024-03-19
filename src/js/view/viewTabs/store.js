@@ -1,4 +1,5 @@
-import { STATE } from "../../utils/Constants";
+import { STATE } from "../../utils/Constants.js";
+import Grid from "../press/Grid.js";
 
 const viewState = {
 	currentPressView: "total",
@@ -17,6 +18,13 @@ for (const key in viewState) {
 	});
 }
 
+function changeView() {
+	if (viewState.currentDisplay === "grid") Grid.init();
+	// if(viewState.currentPressView)
+	// if(viewState.currentPressView)
+	// if(viewState.currentPressView)
+}
+
 const dispatch = (currentView) => {
 	if (currentView === STATE.total || currentView === STATE.sub) {
 		viewState.currentPressView = currentView;
@@ -26,4 +34,4 @@ const dispatch = (currentView) => {
 	}
 };
 
-export default dispatch;
+export { dispatch, changeView };
