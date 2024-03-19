@@ -7,15 +7,17 @@ const template = (pressTitle) => `
 							<span>${pressTitle}을(를)</span>
 							<span>구독해지하시겠습니다</span>
 							<div class="modal__btn">
-								<button class="yes">예</button><button class="no">아니오</button>
+								<button id="yes">예</button><button id="no">아니오</button>
 							</div>
 						</div>
 `;
 
 function renderModal(pressTitle, subscribeFlag) {
-	const $modal = document.querySelector(".modal");
+	const $pressDesc = document.querySelector(".press__desc");
+	const $modal = document.createElement("div");
+	$modal.classList.add("modal", "active");
+	$pressDesc.appendChild($modal);
 	$modal.innerHTML = template(pressTitle);
-	$modal.classList.add("active");
 	if (subscribeFlag) {
 		$modal.querySelector(".modal--subscribe").classList.add("active");
 		return;
@@ -25,8 +27,17 @@ function renderModal(pressTitle, subscribeFlag) {
 
 function deleteModal() {
 	const $modal = document.querySelector(".modal");
-	$modal.innerHTML = "";
-	$modal.classList.remove("active");
+	$modal.remove();
 }
 
-export { renderModal, deleteModal };
+function clickYesNo(unsubscribe) {
+	const $modal = document.querySelector(".modal");
+	$modal.addEventListener("click", ({ target }) => {
+		if (target.id === "yes") {
+			unsubscribe();
+		}
+		deleteModal();
+	});
+}
+
+export { renderModal, deleteModal, clickYesNo };

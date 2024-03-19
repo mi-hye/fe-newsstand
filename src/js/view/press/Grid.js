@@ -1,9 +1,10 @@
-import { renderModal, deleteModal } from "../../components/modal.js";
 import { GRID } from "../../utils/Constants.js";
 import { getJson } from "../../utils/fetchJson.js";
+import handleSubscrible from "../../components/subscribeHandler.js";
 
 const Grid = {
 	//TODO refactoring
+	//TODO 렌더 바꿔야해 구독하기 버튼 누르면 다시 렌더 시켜야해
 	totalJson: (await getJson("totalGrid")).sort(() => Math.random() - 0.5),
 	subJson: await getJson("subGrid"),
 	$gridWrap: document.querySelector(".press__grid-wrap__grid"),
@@ -40,53 +41,8 @@ const Grid = {
 		return Math.floor(Grid.subJson.length / 24);
 	},
 	clickSubscribe() {
-		Grid.$gridWrap.addEventListener("click", Grid.handleSubscrible);
-	},
-	async handleSubscrible({ target }) {
-		// console.dir(target);
-		// console.log(target.parentElement.children[0].alt);
-		// const modal = document.querySelector(".modal");
-		// modal.classList.add("active");
-		// console.dir(modal);
-
-		if (target.tagName === "BUTTON") {
-			const title = target.parentElement.children[0].alt;
-			const id = target.id;
-			const targetBtn = await fetch(`http://localhost:3000/totalGrid/${id}`);
-			const targetBtnJson = await targetBtn.json();
-
-			if (target.innerText === "+ 구독하기") {
-				renderModal(title, true);
-				setTimeout(deleteModal, 3000);
-			} else {
-				renderModal(title, false);
-			}
-			// ? Grid.subscribe(targetBtnJson, id)
-			// : Grid.unsubscribe(targetBtnJson, id);
-		}
-	},
-	subscribe(targetBtnJson, id) {
-		targetBtnJson.subscription = true;
-		Grid.updateNews(targetBtnJson, id);
-
-		fetch(`http://localhost:3000/subGrid`, {
-			method: "POST",
-			body: JSON.stringify(targetBtnJson),
-		});
-	},
-	unsubscribe(targetBtnJson, id) {
-		targetBtnJson.subscription = false;
-		Grid.updateNews(targetBtnJson, id);
-
-		fetch(`http://localhost:3000/subGrid/${id}`, {
-			method: "DELETE",
-			body: JSON.stringify(targetBtnJson),
-		});
-	},
-	updateNews(targetBtnJson, id) {
-		fetch(`http://localhost:3000/totalGrid/${id}`, {
-			method: "PUT",
-			body: JSON.stringify(targetBtnJson),
+		Grid.$gridWrap.addEventListener("click", ({ target }) => {
+			handleSubscrible(target, "Grid");
 		});
 	},
 };
