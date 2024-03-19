@@ -15,16 +15,20 @@ for (const key in viewState) {
 		},
 		set(value) {
 			_value = value;
+			changeView();
 		},
 	});
 }
 
 function changeView() {
-	if (viewState.currentDisplay === "grid") {
-		Grid.render(GRID.firstPageIdx);
-		controlSwiper(GRID.firstPageIdx, GRID.lastPageIdx, Grid.render, "grid");
+	if (viewState.currentDisplay === "grid" && viewState.currentPressView === "total") {
+		Grid.totalRender(GRID.firstPageIdx);
+		controlSwiper(GRID.firstPageIdx, GRID.lastPageIdx, Grid.totalRender, "grid");
 	}
-	// if(viewState.currentPressView)
+	if (viewState.currentDisplay === "grid" && viewState.currentPressView === "sub") {
+		const lastPageIdx = Grid.subRender(GRID.firstPageIdx);
+		controlSwiper(GRID.firstPageIdx, lastPageIdx, Grid.subRender, "grid");
+	}
 	// if(viewState.currentPressView)
 	// if(viewState.currentPressView)
 }
@@ -34,7 +38,7 @@ const dispatch = (currentView) => {
 		viewState.currentPressView = currentView;
 	}
 	if (currentView === STATE.grid || currentView === STATE.list) {
-		viewState.currentPressView = currentView;
+		viewState.currentDisplay = currentView;
 	}
 };
 
