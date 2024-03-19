@@ -1,5 +1,5 @@
 const NewsHeader = {
-	initDate: () => {
+	initDate() {
 		const date = document.querySelector(".news-header__date");
 		date.innerHTML = new Intl.DateTimeFormat("ko-KR", {
 			year: "numeric",
@@ -8,7 +8,7 @@ const NewsHeader = {
 			weekday: "long",
 		}).format(new Date());
 	},
-	reload: () => {
+	reload() {
 		const a = document.querySelector(".news-header > a");
 		a.addEventListener("click", () => window.location.reload());
 	},
