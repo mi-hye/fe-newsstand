@@ -21,26 +21,32 @@
 
 .modal--unsubscribe,
 .modal--subscribe {
-	height: 100%;
+	visibility: hidden;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
+	&.active {
+		visibility: visible;
+	}
 }
 
 .modal--unsubscribe > span {
-	margin-bottom: 5px;
+	position: absolute;
+	top: 23px;
 	&:nth-child(2) {
-		margin-bottom: 23px;
+		top: 40px;
 	}
 }
 
 .modal--subscribe > span {
+	position: absolute;
+	top: 31px;
 	font-size: 13px;
 	color: var(--gray);
-	font-weight: var(--main-weight);
+	font-weight: 400;
 	&:last-child {
-		margin-top: 10px;
+		top: 55px;
 	}
 }
 
