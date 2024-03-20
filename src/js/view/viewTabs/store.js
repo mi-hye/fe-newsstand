@@ -1,6 +1,7 @@
 import { STATE, GRID } from "../../utils/Constants.js";
 import Grid from "../press/Grid.js";
 import controlSwiper from "../../components/swiper.js";
+import List from "../press/list/List.js";
 
 const viewState = {
 	currentPressView: "total",
@@ -29,7 +30,9 @@ function changeView() {
 		const lastPageIdx = Grid.subRender(GRID.firstPageIdx);
 		controlSwiper(GRID.firstPageIdx, lastPageIdx, Grid.subRender, "grid");
 	}
-	// if(viewState.currentPressView)
+	if (viewState.currentDisplay === "list" && viewState.currentPressView === "total") {
+		List.totalRender();
+	}
 	// if(viewState.currentPressView)
 }
 
