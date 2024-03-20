@@ -19,6 +19,7 @@ async function getCategoryTotalNews(page, totalCount, startIdx) {
 	const categoryNews = await Array.from({ length: totalCount }).reduce(
 		async (prevPromise, curr, idx) => {
 			const prev = await prevPromise;
+			//TODO idx 계산 잘못함
 			curr = await getSingleNews(page, startIdx + idx);
 			prev.push(curr);
 			await page.click(NEXT_NEWS_TRIGGER);

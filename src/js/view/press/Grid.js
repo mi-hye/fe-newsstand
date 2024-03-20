@@ -4,7 +4,6 @@ import handleSubscrible from "../../components/subscribeHandler.js";
 
 const Grid = {
 	//TODO refactoring
-	//TODO 렌더 바꿔야해 구독하기 버튼 누르면 다시 렌더 시켜야해
 	// totalJson: (await getJson("totalGrid")).sort(() => Math.random() - 0.5),
 	// subJson: await getJson("subGrid"),
 	$gridWrap: document.querySelector(".press__grid-wrap__grid"),
