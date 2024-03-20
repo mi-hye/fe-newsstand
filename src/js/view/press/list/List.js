@@ -1,3 +1,5 @@
+import controlSwiper from "../../../components/swiper.js";
+import { LIST } from "../../../utils/Constants.js";
 import { getJson } from "../../../utils/fetchJson.js";
 import ListRenderer from "./renderer/ListRenderer.js";
 
@@ -19,7 +21,7 @@ const List = {
 
 		const firstCategory = document.querySelector(".press__list__nav__item");
 		firstCategory.click();
-		ListRenderer.totalNews(totalList, 0);
+		ListRenderer.totalNews(totalList, 0); // 이거 바꿔
 	},
 	nextNewsRender(idx) {
 		ListRenderer.totalNews(List.totalList, idx);
@@ -33,21 +35,13 @@ const List = {
 			const currTabText = List.$currTab.children[0].innerText;
 			const currTabStartIdx = List.totalList[currTabText].startIdx;
 			List.nextNewsRender(currTabStartIdx);
+			controlSwiper(currTabStartIdx, LIST.lastPageIdx, List.nextNewsRender, false);
 		};
 
 		// const intervalBox = ["dumy"];
 		List.$tabList.removeEventListener("click", List.binding);
 		List.binding = callback;
 		List.$tabList.addEventListener("click", List.binding);
-
-		// ({ target }) => {
-		// clearInterval(intervalBox[0]);
-		// $currTab = List.handleProgressEvent(target);
-		// ListRenderer.totalTabInfo(totalList, $currTab);
-		// const current = handleProgressEvent(target);
-		// const { currNews, renderNextNews } = renderCategoryNews(current, allNewsJson, intervalBox);
-		// controlSwiper(LIST.firstPageIdx, LIST.lastPageIdx(currNews), renderNextNews);
-		// });
 	},
 	handleProgressEvent(target) {
 		const tabs = document.querySelectorAll(".press__list__nav__item");
