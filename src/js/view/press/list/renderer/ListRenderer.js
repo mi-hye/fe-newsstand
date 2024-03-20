@@ -13,6 +13,7 @@ const ListRenderer = {
 	},
 	totalTabInfo(totalList, $currTab) {
 		const $div = $currTab.querySelector(".press__list__nav__item__info");
+		const a = $currTab.innerText;
 		const length = totalList[$currTab.innerText].totalCount
 			.toString()
 			.padEnd(LIST_TAB.charNum, " ")
@@ -22,13 +23,13 @@ const ListRenderer = {
 				<span class="press__list__nav__item__new-count curr">1</span>
 				<span class="press__list__nav__item__new-count total">/ ${length}</span>`;
 	},
-	top(topJson) {
-		const { aHref, imgSrc, spanText } = topJson;
+	top({ id, header, subscription }) {
+		const { aHref, imgSrc, spanText } = header;
 		return `<a href=${aHref}>
 					<img src=${imgSrc} />
 				</a>
 				<span>${spanText}</span>
-				<button>+ 구독하기</button>`;
+				<button class="${id}">${subscription ? "X" : "+ 구독하기"}</button>`;
 	},
 	descLeft(descLeftJson) {
 		const { aHref, aText, imgSrc } = descLeftJson;
@@ -52,8 +53,9 @@ const ListRenderer = {
 		const [desLeft, desRight] = headerArea.nextElementSibling.children;
 		// const $currNum = document.querySelector(".curr");
 
-		const { header, descriptionLeft, descriptionRight } = totalList.totalNews[currIdx];
-		ListRenderer.setInnerHTML(headerArea, ListRenderer.top, header);
+		const { id, header, descriptionLeft, descriptionRight, subscription } =
+			totalList.totalNews[currIdx];
+		ListRenderer.setInnerHTML(headerArea, ListRenderer.top, { id, header, subscription });
 		ListRenderer.setInnerHTML(desLeft, ListRenderer.descLeft, descriptionLeft);
 		ListRenderer.setInnerHTML(desRight, ListRenderer.descRight, descriptionRight);
 		// $currNum.innerHTML = currIdx + 1;

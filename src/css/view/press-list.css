@@ -115,8 +115,8 @@
 		color: var(--main-font-color);
 		font-weight: var(--main-weight);
 		height: 24px;
-		width: 70px;
 		display: flex;
+		cursor: pointer;
 	}
 }
 
