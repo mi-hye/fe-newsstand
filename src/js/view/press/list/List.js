@@ -1,22 +1,26 @@
-import { LIST } from "../../../utils/Constants.js";
 import { getJson } from "../../../utils/fetchJson.js";
 import ListRenderer from "./renderer/ListRenderer.js";
 
 const List = {
-	// allNewsJson: await readJSON("allListNews"),
-	// init() {
-	// 	renderTab(List.allNewsJson);
-
-	// 	const firstCategory = document.querySelector(".press__list__nav__item");
-	// 	firstCategory.click();
-	// },
+	totalList: await getJson("totalList"),
+	async init() {
+		const totalList = await getJson("totalList");
+		const $tabList = document.querySelector(".press__list__nav");
+		List.clickTab(totalList, $tabList);
+	},
 	async totalRender() {
 		const totalList = await getJson("totalList");
 		const $tabList = document.querySelector(".press__list__nav");
 		const a = totalList.totalNews; // 246개뉴스
 		ListRenderer.totalTab($tabList);
-		List.clickTab(totalList, $tabList);
+
+		List.clickTab(totalList, $tabList); // TODO 나중에 main으로 빼야함
+
+		const firstCategory = document.querySelector(".press__list__nav__item");
+		firstCategory.click();
+		ListRenderer.totalNews(totalList, 0);
 	},
+	nextNewsRender: (idx) => ListRenderer.totalNews(List.totalList, idx),
 	clickTab(totalList, $tabList) {
 		// const intervalBox = ["dumy"];
 		$tabList.addEventListener("click", ({ target }) => {
