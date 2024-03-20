@@ -1,7 +1,7 @@
 import controlSwiper from "../../../components/swiper.js";
 import { LIST } from "../../../utils/Constants.js";
 import { getJson } from "../../../utils/fetchJson.js";
-import ListRenderer from "./renderer/ListRenderer.js";
+import ListRenderer from "./ListRenderer.js";
 
 const List = {
 	binding: () => {},
@@ -24,7 +24,7 @@ const List = {
 	nextNewsRender(idx) {
 		const [lastIdx, _] = List.getCurrTabInfo();
 		if (idx === lastIdx) {
-			List.findNextTab().click();
+			List.findNextTab().click(); //TODO 왼쪽버튼가능..?
 			return;
 		}
 
