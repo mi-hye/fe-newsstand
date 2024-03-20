@@ -1,3 +1,4 @@
+//FIXME 제거 예정
 async function readJSON(file) {
 	try {
 		const response = await fetch(`../src/nodejs/json/${file}.json`);

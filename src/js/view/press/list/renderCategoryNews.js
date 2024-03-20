@@ -68,4 +68,4 @@ function renderCategoryNews(current, allNewsJson, intervalBox) {
 	return { currNews, renderNextNews };
 }
 
-export default renderCategoryNews;
+export default renderCategoryNews; // categoryNews

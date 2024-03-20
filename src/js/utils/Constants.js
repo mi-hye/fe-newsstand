@@ -12,6 +12,7 @@ export const VISIBILITY = Object.freeze({
 });
 
 export const ROLLING = Object.freeze({
+	zero: 0,
 	newsCount: 5,
 	fourSec: 4000,
 	fiveSec: 5000,
@@ -40,4 +41,8 @@ export const STATE = Object.freeze({
 	list: "list",
 	total: "total",
 	sub: "sub",
+});
+
+export const MODAL = Object.freeze({
+	delay: 3000,
 });

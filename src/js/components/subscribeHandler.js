@@ -1,4 +1,5 @@
 import { renderModal, deleteModal, clickYesNo } from "./modal.js";
+import { MODAL } from "../utils/Constants.js";
 
 async function handleSubscrible(target, display) {
 	if (target.tagName === "BUTTON") {
@@ -9,7 +10,7 @@ async function handleSubscrible(target, display) {
 
 		if (target.innerText === "+ 구독하기") {
 			renderModal(title, true);
-			setTimeout(deleteModal, 3000);
+			setTimeout(deleteModal, MODAL.delay);
 			subscribe(targetBtnJson, id, display);
 		} else {
 			renderModal(title, false);
