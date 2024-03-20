@@ -16,15 +16,19 @@ const List = {
 	async totalRender() {
 		const totalList = await getJson("totalList");
 		ListRenderer.totalTab(List.$tabList);
-
 		List.clickTab(totalList, List.$tabList); // TODO 나중에 main으로 빼야함
-
 		const firstCategory = document.querySelector(".press__list__nav__item");
 		firstCategory.click();
-		ListRenderer.totalNews(totalList, LIST.firstPageIdx); // 이거 바꿔
+		ListRenderer.totalNews(totalList, LIST.firstPageIdx, List.$currTab); // 이거 바꿔
 	},
 	nextNewsRender(idx) {
-		ListRenderer.totalNews(List.totalList, idx);
+		const [lastIdx, _] = List.getCurrTabInfo();
+		if (idx === lastIdx) {
+			List.findNextTab().click();
+			return;
+		}
+
+		ListRenderer.totalNews(List.totalList, idx, List.$currTab);
 		List.resetAnimation(List.$currTab);
 		List.resetInterval();
 	},
@@ -33,8 +37,7 @@ const List = {
 			List.$currTab = List.handleProgressEvent(target);
 			ListRenderer.totalTabInfo(List.totalList, List.$currTab);
 			List.resetAnimation(List.$currTab);
-			const currTabText = List.$currTab.children[0].innerText;
-			const currTabStartIdx = List.totalList[currTabText].startIdx;
+			const [_, currTabStartIdx] = List.getCurrTabInfo();
 			List.nextNewsRender(currTabStartIdx);
 			controlSwiper(currTabStartIdx, LIST.lastPageIdx, List.nextNewsRender, false);
 		};
@@ -62,6 +65,19 @@ const List = {
 			const right = document.querySelector("#right");
 			right.click();
 		}, LIST.progressDelay);
+	},
+	getCurrTabInfo() {
+		const currTabText = List.$currTab.children[0].innerText;
+		const currTabStartIdx = List.totalList[currTabText].startIdx;
+		const currTabTotalCount = List.totalList[currTabText].totalCount;
+		const lastIdx = currTabStartIdx + currTabTotalCount;
+		return [lastIdx, currTabStartIdx];
+	},
+	findNextTab() {
+		const tabs = document.querySelectorAll(".press__list__nav__item");
+		const currTab = Array.from(tabs).find((tab) => tab.ariaSelected === "true");
+		if (currTab.nextElementSibling) return currTab.nextElementSibling;
+		else return tabs[0];
 	},
 };
 

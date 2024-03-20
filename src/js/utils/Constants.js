@@ -27,7 +27,7 @@ export const LIST_TAB = Object.freeze({
 
 export const LIST = Object.freeze({
 	firstPageIdx: 0,
-	lastPageIdx: 245,
+	lastPageIdx: 246,
 	progressDelay: 6000,
 });
 

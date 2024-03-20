@@ -48,17 +48,19 @@ const ListRenderer = {
 		return `${innerElements}</ul>`;
 	},
 	setInnerHTML: (area, renderer, json) => (area.innerHTML = renderer(json)),
-	totalNews(totalList, currIdx) {
+	totalNews(totalList, currIdx, $currTab) {
 		const headerArea = document.querySelector(".press__list__news-top");
 		const [desLeft, desRight] = headerArea.nextElementSibling.children;
-		// const $currNum = document.querySelector(".curr");
+		const $currNum = $currTab.querySelector(".curr");
+		const currTabText = $currTab.children[0].innerText;
 
 		const { id, header, descriptionLeft, descriptionRight, subscription } =
 			totalList.totalNews[currIdx];
 		ListRenderer.setInnerHTML(headerArea, ListRenderer.top, { id, header, subscription });
 		ListRenderer.setInnerHTML(desLeft, ListRenderer.descLeft, descriptionLeft);
 		ListRenderer.setInnerHTML(desRight, ListRenderer.descRight, descriptionRight);
-		// $currNum.innerHTML = currIdx + 1;
+		const a = currIdx - totalList[currTabText].startIdx + 1;
+		$currNum.innerHTML = currIdx - totalList[currTabText].startIdx + 1;
 	},
 };
 
