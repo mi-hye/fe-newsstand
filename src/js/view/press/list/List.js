@@ -30,6 +30,9 @@ const List = {
 			List.$currTab = List.handleProgressEvent(target);
 			ListRenderer.totalTabInfo(List.totalList, List.$currTab);
 			List.resetAnimation(List.$currTab);
+			const currTabText = List.$currTab.children[0].innerText;
+			const currTabStartIdx = List.totalList[currTabText].startIdx;
+			List.nextNewsRender(currTabStartIdx);
 		};
 
 		// const intervalBox = ["dumy"];

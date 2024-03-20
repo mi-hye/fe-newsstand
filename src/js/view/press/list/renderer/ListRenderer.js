@@ -13,8 +13,8 @@ const ListRenderer = {
 	},
 	totalTabInfo(totalList, $currTab) {
 		const $div = $currTab.querySelector(".press__list__nav__item__info");
-		const a = $currTab.innerText;
-		const length = totalList[$currTab.innerText].totalCount
+		const currTabText = $currTab.children[0].innerText;
+		const length = totalList[currTabText].totalCount
 			.toString()
 			.padEnd(LIST_TAB.charNum, " ")
 			.replace(" ", "&nbsp;&nbsp;");
