@@ -1,22 +1,22 @@
 import SwiperVisibility from "./SwiperVisibility.js";
 
-function controlSwiper(firstPageIdx, lastPageIdx, render, display) {
+function controlSwiper(firstPageIdx, lastPageIdx, render, isGrid) {
 	const swiper = document.querySelector(".press__swiper");
-	SwiperVisibility.init(display,firstPageIdx,lastPageIdx);
+	SwiperVisibility.init(isGrid, firstPageIdx, lastPageIdx);
 	let currIdx = firstPageIdx;
 
-	swiper.addEventListener("click", (e) => {
+	swiper.addEventListener("click", async (e) => {
 		if (e.target.id === "right" && currIdx !== lastPageIdx) currIdx += 1;
 		if (e.target.id === "left" && currIdx) currIdx -= 1;
 
-		display === "grid"
-			? swipeGrid(currIdx, firstPageIdx, lastPageIdx, render)
+		isGrid
+			? await swipeGrid(currIdx, firstPageIdx, lastPageIdx, render)
 			: swipeList(e, currIdx, firstPageIdx, lastPageIdx, render);
 	});
 }
 
-function swipeGrid(currIdx, firstPageIdx, lastPageIdx, render) {
-	render(currIdx);
+async function swipeGrid(currIdx, firstPageIdx, lastPageIdx, render) {
+	await render(currIdx);
 	SwiperVisibility.set(currIdx, firstPageIdx, lastPageIdx);
 }
 
