@@ -1,6 +1,6 @@
 import { renderModal, deleteModal, clickYesNo } from "./modal.js";
 import { MODAL } from "../utils/Constants.js";
-import { dispatch } from "../view/viewTabs/store.js";
+import { dispatch } from "../view/viewStore.js";
 
 async function handleSubscrible(target, display) {
 	if (target.tagName === "BUTTON") {

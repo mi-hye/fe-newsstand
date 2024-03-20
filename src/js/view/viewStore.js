@@ -1,7 +1,7 @@
-import { STATE, GRID } from "../../utils/Constants.js";
-import Grid from "../press/Grid.js";
-import controlSwiper from "../../components/swiper.js";
-import List from "../press/list/List.js";
+import { STATE, GRID, LIST } from "../utils/Constants.js";
+import Grid from "./press/Grid.js";
+import controlSwiper from "../components/swiper.js";
+import List from "./press/list/List.js";
 
 const viewState = {
 	currentPressView: "total",
@@ -14,26 +14,27 @@ for (const key in viewState) {
 		get() {
 			return _value;
 		},
-		set(value) {
+		async set(value) {
 			_value = value;
-			changeView();
+			await changeView();
 		},
 	});
 }
 
-function changeView() {
+async function changeView() {
 	if (viewState.currentDisplay === "grid" && viewState.currentPressView === "total") {
-		Grid.totalRender(GRID.firstPageIdx);
-		controlSwiper(GRID.firstPageIdx, GRID.lastPageIdx, Grid.totalRender, "grid");
+		await Grid.totalRender(GRID.firstPageIdx);
+		controlSwiper(GRID.firstPageIdx, GRID.lastPageIdx, Grid.totalRender, true);
 	}
 	if (viewState.currentDisplay === "grid" && viewState.currentPressView === "sub") {
-		const lastPageIdx = Grid.subRender(GRID.firstPageIdx);
-		controlSwiper(GRID.firstPageIdx, lastPageIdx, Grid.subRender, "grid");
+		const lastPageIdx = await Grid.subRender(GRID.firstPageIdx);
+		controlSwiper(GRID.firstPageIdx, lastPageIdx, Grid.subRender, true);
 	}
 	if (viewState.currentDisplay === "list" && viewState.currentPressView === "total") {
-		List.totalRender();
+		await List.totalRender();
+		controlSwiper(LIST.firstPageIdx, LIST.lastPageIdx, List.nextNewsRender, false);
 	}
-	// if(viewState.currentPressView)
+	// TODO if(viewState.currentPressView)
 }
 
 const dispatch = (currentView) => {
