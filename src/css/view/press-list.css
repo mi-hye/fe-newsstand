@@ -29,6 +29,12 @@
 	span {
 		z-index: 1;
 	}
+
+	.press__list__nav__item__info {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
 	.press__list__nav__item__new-count {
 		position: absolute;
 		font-size: 10px;
