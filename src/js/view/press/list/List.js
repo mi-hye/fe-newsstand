@@ -8,24 +8,25 @@ const List = {
 	totalList: await getJson("totalList"),
 	$tabList: document.querySelector(".press__list__nav"),
 	$currTab: "",
+	interval: "",
 	async init() {
 		const totalList = await getJson("totalList");
 		List.clickTab(totalList, List.$tabList);
 	},
 	async totalRender() {
 		const totalList = await getJson("totalList");
-		const a = totalList.totalNews; // 246개뉴스
 		ListRenderer.totalTab(List.$tabList);
 
 		List.clickTab(totalList, List.$tabList); // TODO 나중에 main으로 빼야함
 
 		const firstCategory = document.querySelector(".press__list__nav__item");
 		firstCategory.click();
-		ListRenderer.totalNews(totalList, 0); // 이거 바꿔
+		ListRenderer.totalNews(totalList, LIST.firstPageIdx); // 이거 바꿔
 	},
 	nextNewsRender(idx) {
 		ListRenderer.totalNews(List.totalList, idx);
 		List.resetAnimation(List.$currTab);
+		List.resetInterval();
 	},
 	clickTab() {
 		const callback = ({ target }) => {
@@ -37,8 +38,6 @@ const List = {
 			List.nextNewsRender(currTabStartIdx);
 			controlSwiper(currTabStartIdx, LIST.lastPageIdx, List.nextNewsRender, false);
 		};
-
-		// const intervalBox = ["dumy"];
 		List.$tabList.removeEventListener("click", List.binding);
 		List.binding = callback;
 		List.$tabList.addEventListener("click", List.binding);
@@ -56,6 +55,13 @@ const List = {
 		animation.classList.remove("active");
 		void animation.offsetWidth;
 		animation.classList.add("active");
+	},
+	resetInterval() {
+		clearInterval(List.interval);
+		List.interval = setInterval(() => {
+			const right = document.querySelector("#right");
+			right.click();
+		}, LIST.progressDelay);
 	},
 };
 
