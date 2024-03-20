@@ -30,11 +30,13 @@ function deleteModal() {
 	$modal.remove();
 }
 
-function clickYesNo(unsubscribe) {
+function clickYesNo(unsubscribe, dispatch) {
 	const $modal = document.querySelector(".modal");
-	$modal.addEventListener("click", ({ target }) => {
+	$modal.addEventListener("click", async ({ target }) => {
 		if (target.id === "yes") {
-			unsubscribe();
+			console.log("yes");
+			await unsubscribe();
+			dispatch();
 		}
 		deleteModal();
 	});

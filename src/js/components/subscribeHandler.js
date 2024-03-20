@@ -1,5 +1,6 @@
 import { renderModal, deleteModal, clickYesNo } from "./modal.js";
 import { MODAL } from "../utils/Constants.js";
+import { dispatch } from "../view/viewTabs/store.js";
 
 async function handleSubscrible(target, display) {
 	if (target.tagName === "BUTTON") {
@@ -10,29 +11,33 @@ async function handleSubscrible(target, display) {
 
 		if (target.innerText === "+ 구독하기") {
 			renderModal(title, true);
+			await subscribe(targetBtnJson, id, display);
+			dispatch(display.toLowerCase());
 			setTimeout(deleteModal, MODAL.delay);
-			subscribe(targetBtnJson, id, display);
 		} else {
 			renderModal(title, false);
-			clickYesNo(() => unsubscribe(targetBtnJson, id, display));
+			clickYesNo(
+				async () => await unsubscribe(targetBtnJson, id, display),
+				() => dispatch(display.toLowerCase())
+			);
 		}
 	}
 }
 
-function subscribe(targetBtnJson, id, display) {
+async function subscribe(targetBtnJson, id, display) {
 	targetBtnJson.subscription = true;
 	updateNews(targetBtnJson, id, display);
 
-	fetch(`http://localhost:3000/sub${display}`, {
+	await fetch(`http://localhost:3000/sub${display}`, {
 		method: "POST",
 		body: JSON.stringify(targetBtnJson),
 	});
 }
-function unsubscribe(targetBtnJson, id, display) {
+async function unsubscribe(targetBtnJson, id, display) {
 	targetBtnJson.subscription = false;
 	updateNews(targetBtnJson, id, display);
 
-	fetch(`http://localhost:3000/sub${display}/${id}`, {
+	await fetch(`http://localhost:3000/sub${display}/${id}`, {
 		method: "DELETE",
 		body: JSON.stringify(targetBtnJson),
 	});

@@ -5,29 +5,28 @@ import handleSubscrible from "../../components/subscribeHandler.js";
 const Grid = {
 	//TODO refactoring
 	//TODO 렌더 바꿔야해 구독하기 버튼 누르면 다시 렌더 시켜야해
-	totalJson: (await getJson("totalGrid")).sort(() => Math.random() - 0.5),
-	subJson: await getJson("subGrid"),
+	// totalJson: (await getJson("totalGrid")).sort(() => Math.random() - 0.5),
+	// subJson: await getJson("subGrid"),
 	$gridWrap: document.querySelector(".press__grid-wrap__grid"),
-	totalRender: (idx) => {
+	async totalRender(idx) {
 		const startIdx = idx * GRID.cellCount;
-		const totalJson = Grid.totalJson;
+		const totalJson = await getJson("totalGrid");
 
-		Grid.$gridWrap.innerHTML = Array.from({ length: GRID.cellCount }).reduce((prev, _, i) => {
+		Grid.$gridWrap.innerHTML = Array.from({ length: GRID.cellCount }).reduce((prev, curr, i) => {
+			curr = totalJson[startIdx + i];
 			prev += `
 			<div>
-				<img src="${totalJson[startIdx + i].src}" alt="${totalJson[startIdx + i].alt}"/>
-			<button id="${totalJson[startIdx + i].id}">${
-				totalJson[startIdx + i].subscription ? "구독해지" : "+ 구독하기"
-			}</button>
+				<img src="${curr.src}" alt="${curr.alt}"/>
+			<button id="${curr.id}">${curr.subscription ? "구독해지" : "+ 구독하기"}</button>
 			</div>`;
 			return prev;
 		}, "");
 	},
-	subRender: (idx) => {
+	async subRender(idx) {
 		const startIdx = idx * GRID.cellCount;
-
+		const total = await getJson("subGrid");
 		Grid.$gridWrap.innerHTML = Array.from({ length: GRID.cellCount }).reduce((prev, curr, i) => {
-			curr = Grid.subJson[startIdx + i];
+			curr = total[startIdx + i];
 			if (curr)
 				prev += `
 			<div>
@@ -38,7 +37,7 @@ const Grid = {
 			return prev;
 		}, "");
 
-		return Math.floor(Grid.subJson.length / 24);
+		return Math.floor(total.length / GRID.cellCount);
 	},
 	clickSubscribe() {
 		Grid.$gridWrap.addEventListener("click", ({ target }) => {
