@@ -35,7 +35,6 @@ function clickYesNo(unsubscribe, dispatch) {
 	const $modal = document.querySelector(".modal");
 	$modal.addEventListener("click", async ({ target }) => {
 		if (target.id === "yes") {
-			console.log("yes");
 			await unsubscribe();
 			dispatch();
 		}
