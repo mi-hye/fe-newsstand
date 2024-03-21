@@ -8,14 +8,14 @@ function togglePressViewTabs() {
 	totalView.addEventListener("click", () => {
 		totalView.classList.add("active");
 		subView.classList.remove("active");
-		gridIcon.click();
+		// gridIcon.click(); FIXME 버그나 바꿔야해
 		dispatch(STATE.total);
 	});
 
 	subView.addEventListener("click", () => {
 		subView.classList.add("active");
 		totalView.classList.remove("active");
-		listIcon.click();
+		// listIcon.click();
 		dispatch(STATE.sub);
 	});
 }

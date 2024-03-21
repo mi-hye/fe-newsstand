@@ -1,57 +1,12 @@
 import handleSubscribe from "../../../components/subscribeHandler.js";
-import controlSwiper from "../../../components/swiper.js";
-import { LIST, LIST_TAB } from "../../../utils/Constants.js";
+import { LIST, LIST_TAB, STATE } from "../../../utils/Constants.js";
 import { getJson } from "../../../utils/fetchJson.js";
 import ListRenderer from "./ListRenderer.js";
-
-const ListState = {
-	currPressViewJson: "",
-	$currTab: "",
-};
+import listDispatch from "./listStore.js";
 
 const List = {
-	binding: () => {},
-	totalList: await getJson("totalList"), //TODO
-	listInfo: await getJson("listInfo"), //TODO return 함수로 바꾸자
-	$tabList: document.querySelector(".press__list__nav"), // TODO
-	$currTab: "",
 	interval: "",
-	async totalRender() {
-		ListState.currPressViewJson = await getJson("totalList");
-		ListRenderer.tabs(List.$tabList, LIST_TAB.category);
-		List.clickTab(); // TODO 나중에 main으로 빼야함
-		const firstCategory = document.querySelector(".press__list__nav__item");
-		firstCategory.click();
-		ListRenderer.totalNews(
-			ListState.currPressViewJson,
-			List.listInfo,
-			LIST.firstPageIdx,
-			List.$currTab
-		); // 이거 바꿔
-	},
-	async nextNewsRender(idx) {
-		const [lastIdx, _] = List.getCurrTabInfo();
-		if (idx === lastIdx) {
-			List.findNextTab().click(); //TODO 왼쪽버튼가능..?
-			return;
-		}
-		ListRenderer.totalNews(ListState.currPressViewJson, List.listInfo, idx, List.$currTab);
-		List.resetAnimation(List.$currTab);
-		List.resetInterval();
-	},
-	clickTab() {
-		const callback = ({ target }) => {
-			List.$currTab = List.handleProgressEvent(target);
-			ListRenderer.totalTabInfo(List.listInfo, List.$currTab); //이것도 빼야해
-			List.resetAnimation(List.$currTab);
-			const [_, currTabStartIdx] = List.getCurrTabInfo(); //얘도
-			List.nextNewsRender(currTabStartIdx);
-			controlSwiper(currTabStartIdx, LIST.lastPageIdx, List.nextNewsRender, false);
-		};
-		List.$tabList.removeEventListener("click", List.binding);
-		List.binding = callback;
-		List.$tabList.addEventListener("click", List.binding);
-	},
+	listInfo: await getJson("listInfo"),
 	handleProgressEvent(target) {
 		const tabs = document.querySelectorAll(".press__list__nav__item");
 		tabs.forEach((tab) => (tab.ariaSelected = false));
@@ -73,12 +28,23 @@ const List = {
 			right.click();
 		}, LIST.progressDelay);
 	},
-	getCurrTabInfo() {
-		const currTabText = List.$currTab.children[0].innerText;
-		const currTabStartIdx = List.listInfo[currTabText].startIdx;
-		const currTabTotalCount = List.listInfo[currTabText].totalCount;
-		const lastIdx = currTabStartIdx + currTabTotalCount;
-		return [lastIdx, currTabStartIdx];
+	getCurrTabInfo($currTab, isTotal) {
+		let currTabidx;
+		let lastIdx;
+
+		if (isTotal) {
+			const currTabText = $currTab.children[0].innerText;
+			currTabidx = List.listInfo[currTabText].startIdx;
+			const currTabTotalCount = List.listInfo[currTabText].totalCount;
+			lastIdx = currTabidx + currTabTotalCount;
+			return [lastIdx, currTabidx];
+		}
+		const tabs = document.querySelectorAll(".press__list__nav__item");
+		currTabidx = Array.from(tabs)
+			.map((tab) => tab.ariaSelected)
+			.indexOf("true");
+		lastIdx = tabs.length;
+		return [lastIdx, currTabidx];
 	},
 	findNextTab() {
 		const tabs = document.querySelectorAll(".press__list__nav__item");
@@ -91,21 +57,53 @@ const List = {
 		const $newTopWrap = document.querySelector(".press__list__news-top");
 		$newTopWrap.addEventListener("click", ({ target }) => handleSubscribe(target, "List"));
 	},
-	async subRender() {
-		ListState.currPressViewJson = await getJson("subList");
-		const listPageNum = ListState.currPressViewJson.length;
-		const newsTitles = ListState.currPressViewJson.map((news) => news.header.pressTitle);
-		ListRenderer.tabs(List.$tabList, newsTitles); // 탭새로그리고
-		// List.clickTab(); // TODO 나중에 main으로 빼야함
-		ListRenderer.subNews(ListState.currPressViewJson, LIST.firstPageIdx);
-		if (listPageNum) {
-			const firstCategory = document.querySelector(".press__list__nav__item");
-			firstCategory.click();
-			List.resetInterval();
+	newsRender(currNewsJson, idx, isTotal, $currTab) {
+		//TODO 뉴스없을때처리
+
+		ListRenderer.news(currNewsJson, idx, false);
+		const [lastIdx, _] = List.getCurrTabInfo($currTab, isTotal);
+		List.resetAnimation($currTab);
+		List.resetInterval();
+
+		const nextRender = (idx) => {
+			if (isTotal) {
+				ListRenderer.currNum(idx, List.listInfo, $currTab);
+				if (idx === lastIdx) {
+					List.findNextTab().click(); //TODO 구독일때랑 왼쪽버튼
+				}
+			} else List.findNextTab().click();
+			ListRenderer.news(currNewsJson, idx, false);
+		};
+		nextRender(idx);
+
+		return nextRender;
+	},
+	tabRender(currNewsJson, isTotal) {
+		const $tabList = document.querySelector(".press__list__nav");
+		if (isTotal) {
+			ListRenderer.tabs($tabList, LIST_TAB.category);
 			return;
 		}
-		clearInterval(List.interval);
-		return listPageNum - 1;
+		const listPageNum = currNewsJson.length;
+		const newsTitles = currNewsJson.map((news) => news.header.pressTitle);
+		ListRenderer.tabs($tabList, newsTitles);
+		//TODO 뉴스가 아무것도 없을때 처리
+	},
+	clickTab() {
+		const $tabList = document.querySelector(".press__list__nav");
+		$tabList.addEventListener("click", ({ target }) => {
+			const $currTab = List.handleProgressEvent(target);
+			listDispatch($currTab);
+		});
+	},
+	renderTabInfo($currTab, isTotal) {
+		const [_, currTabidx] = List.getCurrTabInfo($currTab, isTotal);
+		if (isTotal) {
+			ListRenderer.totalTabInfo(List.listInfo, $currTab);
+			return currTabidx;
+		}
+		ListRenderer.subTabInfo($currTab);
+		return currTabidx;
 	},
 };
 

@@ -2,6 +2,7 @@ import { STATE, GRID, LIST } from "../utils/Constants.js";
 import Grid from "./press/Grid.js";
 import controlSwiper from "../components/swiper.js";
 import List from "./press/list/List.js";
+import listDispatch from "./press/list/listStore.js";
 
 const viewState = {
 	currentPressView: "total",
@@ -31,12 +32,19 @@ async function changeView() {
 		controlSwiper(GRID.firstPageIdx, lastPageIdx, Grid.subRender, true);
 	}
 	if (viewState.currentDisplay === "list" && viewState.currentPressView === "total") {
-		await List.totalRender();
-		controlSwiper(LIST.firstPageIdx, LIST.lastPageIdx, List.nextNewsRender, false);
+		//여기서 렌더하는게 아니라 listStore를 부르자
+		//liststore.currview = total
+		listDispatch(STATE.total);
+
+		// await List.totalRender();
+		// controlSwiper(LIST.firstPageIdx, LIST.lastPageIdx, List.nextNewsRender, false);
 	}
 	if (viewState.currentDisplay === "list" && viewState.currentPressView === "sub") {
-		const lastPageIdx = await List.subRender();
-		controlSwiper(LIST.firstPageIdx, lastPageIdx, List.nextNewsRender, false);
+		//liststore.currview = sub
+		listDispatch(STATE.sub);
+
+		// const lastPageIdx = await List.subRender();
+		// controlSwiper(LIST.firstPageIdx, lastPageIdx, List.nextNewsRender, false);
 	}
 }
 

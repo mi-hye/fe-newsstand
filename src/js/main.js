@@ -13,4 +13,5 @@ toggleDisplayTabs();
 togglePressViewTabs();
 changeView();
 Grid.clickSubscribe();
+List.clickTab();
 List.clickSubscribe();
