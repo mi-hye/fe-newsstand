@@ -62,8 +62,14 @@ const ListRenderer = {
 	subNews(subList, currIdx) {
 		//TODO 위에랑 겹치는거 리펙토링
 		const { headerArea, desLeft, desRight } = ListRenderer.getRenderArea();
-		const { id, header, descriptionLeft, descriptionRight, subscription } = subList[currIdx];
+		if (!subList.length) {
+			headerArea.innerHTML = "구독중인 뉴스가 없습니다";
+			desLeft.innerHTML = "";
+			desRight.innerHTML = "";
+			return;
+		}
 
+		const { id, header, descriptionLeft, descriptionRight, subscription } = subList[currIdx];
 		ListRenderer.setInnerHTML(headerArea, ListRenderer.top, { id, header, subscription });
 		ListRenderer.setInnerHTML(desLeft, ListRenderer.descLeft, descriptionLeft);
 		ListRenderer.setInnerHTML(desRight, ListRenderer.descRight, descriptionRight);

@@ -35,7 +35,8 @@ async function changeView() {
 		controlSwiper(LIST.firstPageIdx, LIST.lastPageIdx, List.nextNewsRender, false);
 	}
 	if (viewState.currentDisplay === "list" && viewState.currentPressView === "sub") {
-		await List.subRender();
+		const lastPageIdx = await List.subRender();
+		controlSwiper(LIST.firstPageIdx, lastPageIdx, List.nextNewsRender, false);
 	}
 }
 

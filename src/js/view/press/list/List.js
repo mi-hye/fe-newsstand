@@ -4,6 +4,11 @@ import { LIST, LIST_TAB } from "../../../utils/Constants.js";
 import { getJson } from "../../../utils/fetchJson.js";
 import ListRenderer from "./ListRenderer.js";
 
+const ListState = {
+	currPressViewJson: "",
+	$currTab: "",
+};
+
 const List = {
 	binding: () => {},
 	totalList: await getJson("totalList"), //TODO
@@ -12,30 +17,34 @@ const List = {
 	$currTab: "",
 	interval: "",
 	async totalRender() {
-		const totalList = await getJson("totalList"); //TODO
+		ListState.currPressViewJson = await getJson("totalList");
 		ListRenderer.tabs(List.$tabList, LIST_TAB.category);
 		List.clickTab(); // TODO 나중에 main으로 빼야함
 		const firstCategory = document.querySelector(".press__list__nav__item");
 		firstCategory.click();
-		ListRenderer.totalNews(totalList, List.listInfo, LIST.firstPageIdx, List.$currTab); // 이거 바꿔
+		ListRenderer.totalNews(
+			ListState.currPressViewJson,
+			List.listInfo,
+			LIST.firstPageIdx,
+			List.$currTab
+		); // 이거 바꿔
 	},
 	async nextNewsRender(idx) {
-		const totalList = await getJson("totalList");
 		const [lastIdx, _] = List.getCurrTabInfo();
 		if (idx === lastIdx) {
 			List.findNextTab().click(); //TODO 왼쪽버튼가능..?
 			return;
 		}
-		ListRenderer.totalNews(totalList, List.listInfo, idx, List.$currTab);
+		ListRenderer.totalNews(ListState.currPressViewJson, List.listInfo, idx, List.$currTab);
 		List.resetAnimation(List.$currTab);
 		List.resetInterval();
 	},
 	clickTab() {
 		const callback = ({ target }) => {
 			List.$currTab = List.handleProgressEvent(target);
-			ListRenderer.totalTabInfo(List.listInfo, List.$currTab);
+			ListRenderer.totalTabInfo(List.listInfo, List.$currTab); //이것도 빼야해
 			List.resetAnimation(List.$currTab);
-			const [_, currTabStartIdx] = List.getCurrTabInfo();
+			const [_, currTabStartIdx] = List.getCurrTabInfo(); //얘도
 			List.nextNewsRender(currTabStartIdx);
 			controlSwiper(currTabStartIdx, LIST.lastPageIdx, List.nextNewsRender, false);
 		};
@@ -83,13 +92,20 @@ const List = {
 		$newTopWrap.addEventListener("click", ({ target }) => handleSubscribe(target, "List"));
 	},
 	async subRender() {
-		const subList = await getJson("subList");
-		const newsTitles = subList.map((news) => news.header.pressTitle);
-		ListRenderer.tabs(List.$tabList, newsTitles);
+		ListState.currPressViewJson = await getJson("subList");
+		const listPageNum = ListState.currPressViewJson.length;
+		const newsTitles = ListState.currPressViewJson.map((news) => news.header.pressTitle);
+		ListRenderer.tabs(List.$tabList, newsTitles); // 탭새로그리고
 		// List.clickTab(); // TODO 나중에 main으로 빼야함
-		const firstCategory = document.querySelector(".press__list__nav__item");
-		firstCategory.click();
-		ListRenderer.subNews(subList, LIST.firstPageIdx);
+		ListRenderer.subNews(ListState.currPressViewJson, LIST.firstPageIdx);
+		if (listPageNum) {
+			const firstCategory = document.querySelector(".press__list__nav__item");
+			firstCategory.click();
+			List.resetInterval();
+			return;
+		}
+		clearInterval(List.interval);
+		return listPageNum - 1;
 	},
 };
 
