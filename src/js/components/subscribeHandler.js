@@ -14,7 +14,7 @@ async function handleSubscribe(target, display) {
 		if (target.innerText === "+ 구독하기") {
 			renderModal(title, true);
 			await subscribe(targePressJson, id, display);
-			isGrid ? dispatch(display.toLowerCase()) : listDispatch("sub"); // TODO 그리드의 경우 리스트경우 바꿔야함
+			isGrid ? dispatch(display.toLowerCase()) : listDispatch("sub");
 			setTimeout(deleteModal, MODAL.delay);
 		} else {
 			renderModal(title, false);
