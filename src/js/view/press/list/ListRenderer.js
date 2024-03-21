@@ -52,42 +52,18 @@ const ListRenderer = {
 		return `${innerElements}</ul>`;
 	},
 	setInnerHTML: (area, renderer, json) => (area.innerHTML = renderer(json)),
-	totalNews(totalList, currIdx) {
-		const { headerArea, desLeft, desRight } = ListRenderer.getRenderArea();
-		const { id, header, descriptionLeft, descriptionRight, subscription } = totalList[currIdx];
-		ListRenderer.setInnerHTML(headerArea, ListRenderer.top, { id, header, subscription });
-		ListRenderer.setInnerHTML(desLeft, ListRenderer.descLeft, descriptionLeft);
-		ListRenderer.setInnerHTML(desRight, ListRenderer.descRight, descriptionRight);
-	},
 	currNum(currIdx, listInfo, $currTab) {
 		const $currNum = $currTab.querySelector(".curr");
 		const currTabText = $currTab.children[0].innerText;
-		const a = currIdx - listInfo[currTabText].startIdx + 1; //FIXME
 		$currNum.innerHTML = currIdx - listInfo[currTabText].startIdx + 1;
-	},
-	subNews(subList, currIdx) {
-		//TODO 위에랑 겹치는거 리펙토링
-		const { headerArea, desLeft, desRight } = ListRenderer.getRenderArea();
-		// if (!subList.length) {
-		// 	headerArea.innerHTML = "구독중인 뉴스가 없습니다";
-		// 	desLeft.innerHTML = "";
-		// 	desRight.innerHTML = "";
-		// 	return;
-		// }
-
-		const { id, header, descriptionLeft, descriptionRight, subscription } = subList[currIdx];
-		ListRenderer.setInnerHTML(headerArea, ListRenderer.top, { id, header, subscription });
-		ListRenderer.setInnerHTML(desLeft, ListRenderer.descLeft, descriptionLeft);
-		ListRenderer.setInnerHTML(desRight, ListRenderer.descRight, descriptionRight);
 	},
 	getRenderArea() {
 		const headerArea = document.querySelector(".press__list__news-top");
 		const [desLeft, desRight] = headerArea.nextElementSibling.children;
 		return { headerArea, desLeft, desRight };
 	},
-
-	//리펙중
 	news(newsJson, currIdx, isEmpty) {
+		//TODO 뉴스 비어있을때
 		const { headerArea, desLeft, desRight } = ListRenderer.getRenderArea();
 		const { id, header, descriptionLeft, descriptionRight, subscription } = newsJson[currIdx];
 		ListRenderer.setInnerHTML(headerArea, ListRenderer.top, { id, header, subscription });

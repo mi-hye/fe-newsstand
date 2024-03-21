@@ -53,7 +53,7 @@ function changeCurrTab($currTab) {
 }
 
 async function listDispatch(state) {
-	//TODO refactor 프롱트꺼 참고
+	//TODO refactor 프롱트 참고
 	if (state === STATE.total) {
 		ListState.currPressView = "total";
 		ListState.currPressViewJson = await getJson("totalList");

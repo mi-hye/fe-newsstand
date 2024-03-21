@@ -52,7 +52,15 @@ const List = {
 		if (currTab.nextElementSibling) return currTab.nextElementSibling;
 		else return tabs[0];
 	},
-	findPreviousTab() {}, //TODO
+	findPreviousTab() {
+		const tabs = document.querySelectorAll(".press__list__nav__item");
+		const currTabidx = Array.from(tabs)
+			.map((tab) => tab.ariaSelected)
+			.indexOf("true");
+
+		if (currTabidx) return tabs[currTabidx - 1];
+		return tabs[tabs.length - 1];
+	},
 	clickSubscribe() {
 		const $newTopWrap = document.querySelector(".press__list__news-top");
 		$newTopWrap.addEventListener("click", ({ target }) => handleSubscribe(target, "List"));
@@ -61,7 +69,7 @@ const List = {
 		//TODO 뉴스없을때처리
 
 		ListRenderer.news(currNewsJson, idx, false);
-		const [lastIdx, _] = List.getCurrTabInfo($currTab, isTotal);
+		const [lastIdx, startIdx] = List.getCurrTabInfo($currTab, isTotal);
 		List.resetAnimation($currTab);
 		List.resetInterval();
 
@@ -71,7 +79,10 @@ const List = {
 				if (idx === lastIdx) {
 					List.findNextTab().click(); //TODO 구독일때랑 왼쪽버튼
 				}
-			} else List.findNextTab().click();
+				if (idx === startIdx - 1) {
+					List.findPreviousTab().click();
+				}
+			}
 			ListRenderer.news(currNewsJson, idx, false);
 		};
 		nextRender(idx);
@@ -84,7 +95,6 @@ const List = {
 			ListRenderer.tabs($tabList, LIST_TAB.category);
 			return;
 		}
-		const listPageNum = currNewsJson.length;
 		const newsTitles = currNewsJson.map((news) => news.header.pressTitle);
 		ListRenderer.tabs($tabList, newsTitles);
 		//TODO 뉴스가 아무것도 없을때 처리
