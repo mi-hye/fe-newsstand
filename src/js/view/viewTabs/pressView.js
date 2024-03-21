@@ -1,5 +1,5 @@
 import { STATE } from "../../utils/Constants.js";
-import {dispatch} from "./store.js";
+import { dispatch } from "../viewStore.js";
 
 function togglePressViewTabs() {
 	const [totalView, subView] = document.querySelectorAll(".press__nav__press-column > div");
