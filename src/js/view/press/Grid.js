@@ -39,9 +39,7 @@ const Grid = {
 		return Math.floor(total.length / GRID.cellCount);
 	},
 	clickSubscribe() {
-		Grid.$gridWrap.addEventListener("click", ({ target }) => {
-			handleSubscrible(target, "Grid");
-		});
+		Grid.$gridWrap.addEventListener("click", ({ target }) => handleSubscrible(target, "Grid"));
 	},
 };
 
