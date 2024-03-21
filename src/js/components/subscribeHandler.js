@@ -1,18 +1,20 @@
 import { renderModal, deleteModal, clickYesNo } from "./modal.js";
 import { MODAL } from "../utils/Constants.js";
 import { dispatch } from "../view/viewStore.js";
+import listDispatch from "../view/press/list/listStore.js";
 
 async function handleSubscribe(target, display) {
 	if (target.tagName === "BUTTON") {
+		const isGrid = display === "Grid";
 		const id = target.className; //TODO ID로 변경
 		const targetPress = await fetch(`http://localhost:3000/total${display}/${id}`);
 		const targePressJson = await targetPress.json();
-		const title = display === "Grid" ? targePressJson.alt : targePressJson.header.pressTitle;
+		const title = isGrid ? targePressJson.alt : targePressJson.header.pressTitle;
 
 		if (target.innerText === "+ 구독하기") {
 			renderModal(title, true);
 			await subscribe(targePressJson, id, display);
-			dispatch(display.toLowerCase()); // TODO 그리드의 경우 리스트경우 바꿔야함
+			isGrid ? dispatch(display.toLowerCase()) : listDispatch("sub"); // TODO 그리드의 경우 리스트경우 바꿔야함
 
 			setTimeout(deleteModal, MODAL.delay);
 		} else {
