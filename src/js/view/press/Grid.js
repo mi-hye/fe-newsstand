@@ -4,8 +4,6 @@ import handleSubscribe from "../../components/subscribeHandler.js";
 
 const Grid = {
 	//TODO refactoring
-	// totalJson: (await getJson("totalGrid")).sort(() => Math.random() - 0.5),
-	// subJson: await getJson("subGrid"),
 	$gridWrap: document.querySelector(".press__grid-wrap__grid"),
 	async totalRender(idx) {
 		const startIdx = idx * GRID.cellCount;
@@ -16,7 +14,7 @@ const Grid = {
 			prev += `
 			<div>
 				<img src="${curr.src}" alt="${curr.alt}"/>
-			<button id="${curr.id}">${curr.subscription ? "구독해지" : "+ 구독하기"}</button>
+			<button class="${curr.id}">${curr.subscription ? "구독해지" : "+ 구독하기"}</button>
 			</div>`;
 			return prev;
 		}, "");
@@ -30,7 +28,7 @@ const Grid = {
 				prev += `
 			<div>
 				<img src="${curr.src}" alt="${curr.alt}"/>
-			<button id="${curr.id}">구독해지</button>
+			<button class="${curr.id}">구독해지</button>
 			</div>`;
 			else prev += "<div></div>";
 			return prev;
