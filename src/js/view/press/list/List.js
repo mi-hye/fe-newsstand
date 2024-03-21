@@ -105,6 +105,13 @@ const List = {
 		ListRenderer.subTabInfo($currTab);
 		return currTabidx;
 	},
+	addScroll() {
+		const scroll = document.querySelector(".press__list__nav");
+		scroll.addEventListener("wheel", (e) => {
+			e.preventDefault();
+			scroll.scrollLeft += e.deltaY > 0 ? e.deltaY - LIST.wheelSpeed : e.deltaY + LIST.wheelSpeed;
+		});
+	},
 };
 
 export default List;

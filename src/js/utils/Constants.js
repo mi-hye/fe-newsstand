@@ -29,6 +29,7 @@ export const LIST = Object.freeze({
 	firstPageIdx: 0,
 	lastPageIdx: 246,
 	progressDelay: 6000,
+	wheelSpeed: 90,
 });
 
 export const STATE = Object.freeze({

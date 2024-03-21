@@ -15,3 +15,4 @@ changeView();
 Grid.clickSubscribe();
 List.clickTab();
 List.clickSubscribe();
+List.addScroll();

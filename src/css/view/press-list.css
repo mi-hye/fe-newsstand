@@ -7,10 +7,16 @@
 }
 
 .press__list__nav {
+	overflow-x: auto;
+	overflow-y: hidden;
+	white-space: nowrap;
 	height: 32px;
 	display: flex;
 	border: var(--main-border);
 	background-color: var(--gray-bacground);
+	&::-webkit-scrollbar {
+		display: none;
+	}
 }
 
 .press__list__nav__item {
