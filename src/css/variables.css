@@ -7,4 +7,6 @@
 	--gray-bacground: rgba(var(--gray-rgb), 0.1);
 	--main-weight: 500;
 	--main-font-color: rgba(var(--deep-gray-rgb), 0.8);
+	--bacground-color: #fff;
+	--color: #14212a;
 }
