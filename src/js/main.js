@@ -4,6 +4,7 @@ import toggleDisplayTabs from "./view/viewTabs/display.js";
 import togglePressViewTabs from "./view/viewTabs/pressView.js";
 import { changeView } from "./view/viewStore.js";
 import Grid from "./view/press/Grid.js";
+import List from "./view/press/list/List.js";
 
 NewsHeader.reload();
 NewsHeader.initDate();
@@ -12,3 +13,4 @@ toggleDisplayTabs();
 togglePressViewTabs();
 changeView();
 Grid.clickSubscribe();
+List.clickSubscribe();

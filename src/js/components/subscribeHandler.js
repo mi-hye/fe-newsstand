@@ -4,48 +4,49 @@ import { dispatch } from "../view/viewStore.js";
 
 async function handleSubscribe(target, display) {
 	if (target.tagName === "BUTTON") {
-		const title = target.parentElement.children[0].alt;
-		const id = target.id;
-		const targetBtn = await fetch(`http://localhost:3000/totalGrid/${id}`);
-		const targetBtnJson = await targetBtn.json();
+		const id = target.className; //TODO ID로 변경
+		const targetPress = await fetch(`http://localhost:3000/total${display}/${id}`);
+		const targePressJson = await targetPress.json();
+		const title = display === "Grid" ? targePressJson.alt : targePressJson.header.pressTitle;
 
 		if (target.innerText === "+ 구독하기") {
 			renderModal(title, true);
-			await subscribe(targetBtnJson, id, display);
-			dispatch(display.toLowerCase());
+			await subscribe(targePressJson, id, display);
+			dispatch(display.toLowerCase()); // TODO 그리드의 경우 리스트경우 바꿔야함
+
 			setTimeout(deleteModal, MODAL.delay);
 		} else {
 			renderModal(title, false);
 			clickYesNo(
-				async () => await unsubscribe(targetBtnJson, id, display),
+				async () => await unsubscribe(targePressJson, id, display),
 				() => dispatch(display.toLowerCase())
 			);
 		}
 	}
 }
 
-async function subscribe(targetBtnJson, id, display) {
-	targetBtnJson.subscription = true;
-	updateNews(targetBtnJson, id, display);
+async function subscribe(targePressJson, id, display) {
+	targePressJson.subscription = true;
+	updateNews(targePressJson, id, display);
 
 	await fetch(`http://localhost:3000/sub${display}`, {
 		method: "POST",
-		body: JSON.stringify(targetBtnJson),
+		body: JSON.stringify(targePressJson),
 	});
 }
-async function unsubscribe(targetBtnJson, id, display) {
-	targetBtnJson.subscription = false;
-	updateNews(targetBtnJson, id, display);
+async function unsubscribe(targePressJson, id, display) {
+	targePressJson.subscription = false;
+	updateNews(targePressJson, id, display);
 
 	await fetch(`http://localhost:3000/sub${display}/${id}`, {
 		method: "DELETE",
-		body: JSON.stringify(targetBtnJson),
+		body: JSON.stringify(targePressJson),
 	});
 }
-function updateNews(targetBtnJson, id, display) {
+function updateNews(targePressJson, id, display) {
 	fetch(`http://localhost:3000/total${display}/${id}`, {
 		method: "PUT",
-		body: JSON.stringify(targetBtnJson),
+		body: JSON.stringify(targePressJson),
 	});
 }
 
