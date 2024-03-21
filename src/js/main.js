@@ -8,6 +8,7 @@ import List from "./view/press/list/List.js";
 
 NewsHeader.reload();
 NewsHeader.initDate();
+NewsHeader.changeDark();
 initLatestNews();
 toggleDisplayTabs();
 togglePressViewTabs();
