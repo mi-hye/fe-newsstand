@@ -11,10 +11,10 @@ const ListRenderer = {
 			return prev;
 		}, "");
 	},
-	totalTabInfo(totalList, $currTab) {
+	totalTabInfo(listInfo, $currTab) {
 		const $div = $currTab.querySelector(".press__list__nav__item__info");
 		const currTabText = $currTab.children[0].innerText;
-		const length = totalList[currTabText].totalCount
+		const length = listInfo[currTabText].totalCount
 			.toString()
 			.padEnd(LIST_TAB.charNum, " ")
 			.replace(" ", "&nbsp;&nbsp;");
@@ -48,19 +48,18 @@ const ListRenderer = {
 		return `${innerElements}</ul>`;
 	},
 	setInnerHTML: (area, renderer, json) => (area.innerHTML = renderer(json)),
-	totalNews(totalList, currIdx, $currTab) {
+	totalNews(totalList,listInfo, currIdx, $currTab) {
 		const headerArea = document.querySelector(".press__list__news-top");
 		const [desLeft, desRight] = headerArea.nextElementSibling.children;
 		const $currNum = $currTab.querySelector(".curr");
 		const currTabText = $currTab.children[0].innerText;
 
 		const { id, header, descriptionLeft, descriptionRight, subscription } =
-			totalList.totalNews[currIdx];
+			totalList[currIdx];
 		ListRenderer.setInnerHTML(headerArea, ListRenderer.top, { id, header, subscription });
 		ListRenderer.setInnerHTML(desLeft, ListRenderer.descLeft, descriptionLeft);
 		ListRenderer.setInnerHTML(desRight, ListRenderer.descRight, descriptionRight);
-		const a = currIdx - totalList[currTabText].startIdx + 1;
-		$currNum.innerHTML = currIdx - totalList[currTabText].startIdx + 1;
+		$currNum.innerHTML = currIdx - listInfo[currTabText].startIdx + 1;
 	},
 };
 

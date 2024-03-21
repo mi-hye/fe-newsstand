@@ -6,17 +6,18 @@ import ListRenderer from "./ListRenderer.js";
 
 const List = {
 	binding: () => {},
-	totalList: await getJson("totalList"),
+	totalList: await getJson("totalList"), //TODO
+	listInfo: await getJson("listInfo"),//TODO return 함수로 바꾸자
 	$tabList: document.querySelector(".press__list__nav"),
 	$currTab: "",
 	interval: "",
 	async totalRender() {
-		const totalList = await getJson("totalList");
+		const totalList = await getJson("totalList"); //TODO
 		ListRenderer.totalTab(List.$tabList);
 		List.clickTab(); // TODO 나중에 main으로 빼야함
 		const firstCategory = document.querySelector(".press__list__nav__item");
 		firstCategory.click();
-		ListRenderer.totalNews(totalList, LIST.firstPageIdx, List.$currTab); // 이거 바꿔
+		ListRenderer.totalNews(totalList, List.listInfo, LIST.firstPageIdx, List.$currTab); // 이거 바꿔 
 	},
 	nextNewsRender(idx) {
 		const [lastIdx, _] = List.getCurrTabInfo();
@@ -24,14 +25,14 @@ const List = {
 			List.findNextTab().click(); //TODO 왼쪽버튼가능..?
 			return;
 		}
-		ListRenderer.totalNews(List.totalList, idx, List.$currTab);
+		ListRenderer.totalNews(List.totalList,List.listInfo, idx, List.$currTab);
 		List.resetAnimation(List.$currTab);
 		List.resetInterval();
 	},
 	clickTab() {
 		const callback = ({ target }) => {
 			List.$currTab = List.handleProgressEvent(target);
-			ListRenderer.totalTabInfo(List.totalList, List.$currTab);
+			ListRenderer.totalTabInfo(List.listInfo, List.$currTab);
 			List.resetAnimation(List.$currTab);
 			const [_, currTabStartIdx] = List.getCurrTabInfo();
 			List.nextNewsRender(currTabStartIdx);
@@ -64,8 +65,8 @@ const List = {
 	},
 	getCurrTabInfo() {
 		const currTabText = List.$currTab.children[0].innerText;
-		const currTabStartIdx = List.totalList[currTabText].startIdx;
-		const currTabTotalCount = List.totalList[currTabText].totalCount;
+		const currTabStartIdx = List.listInfo[currTabText].startIdx;
+		const currTabTotalCount = List.listInfo[currTabText].totalCount;
 		const lastIdx = currTabStartIdx + currTabTotalCount;
 		return [lastIdx, currTabStartIdx];
 	},
@@ -78,7 +79,7 @@ const List = {
 	findPreviousTab() {}, //TODO
 	clickSubscribe() {
 		const $newTopWrap = document.querySelector(".press__list__news-top");
-		$newTopWrap.addEventListener("click", ({ target }) => handleSubscribe(target, "list"))
+		$newTopWrap.addEventListener("click", ({ target }) => handleSubscribe(target, "List"));
 	},
 };
 
