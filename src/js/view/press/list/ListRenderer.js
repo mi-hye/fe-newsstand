@@ -1,8 +1,8 @@
-import { LIST_TAB, LIST } from "../../../utils/Constants.js";
+import { LIST_TAB } from "../../../utils/Constants.js";
 
 const ListRenderer = {
-	totalTab($tabList) {
-		$tabList.innerHTML = LIST_TAB.category.reduce((prev, curr) => {
+	tabs($tabList, tabs) {
+		$tabList.innerHTML = tabs.reduce((prev, curr) => {
 			prev += `<li class="press__list__nav__item" role="tab" tabindex="0">
                         <span>${curr}</span>
 						<div class="press__list__nav__item__info"></div>
@@ -48,18 +48,30 @@ const ListRenderer = {
 		return `${innerElements}</ul>`;
 	},
 	setInnerHTML: (area, renderer, json) => (area.innerHTML = renderer(json)),
-	totalNews(totalList,listInfo, currIdx, $currTab) {
-		const headerArea = document.querySelector(".press__list__news-top");
-		const [desLeft, desRight] = headerArea.nextElementSibling.children;
+	totalNews(totalList, listInfo, currIdx, $currTab) {
+		const { headerArea, desLeft, desRight } = ListRenderer.getRenderArea();
 		const $currNum = $currTab.querySelector(".curr");
 		const currTabText = $currTab.children[0].innerText;
 
-		const { id, header, descriptionLeft, descriptionRight, subscription } =
-			totalList[currIdx];
+		const { id, header, descriptionLeft, descriptionRight, subscription } = totalList[currIdx];
 		ListRenderer.setInnerHTML(headerArea, ListRenderer.top, { id, header, subscription });
 		ListRenderer.setInnerHTML(desLeft, ListRenderer.descLeft, descriptionLeft);
 		ListRenderer.setInnerHTML(desRight, ListRenderer.descRight, descriptionRight);
 		$currNum.innerHTML = currIdx - listInfo[currTabText].startIdx + 1;
+	},
+	subNews(subList, currIdx) {
+		//TODO 위에랑 겹치는거 리펙토링
+		const { headerArea, desLeft, desRight } = ListRenderer.getRenderArea();
+		const { id, header, descriptionLeft, descriptionRight, subscription } = subList[currIdx];
+
+		ListRenderer.setInnerHTML(headerArea, ListRenderer.top, { id, header, subscription });
+		ListRenderer.setInnerHTML(desLeft, ListRenderer.descLeft, descriptionLeft);
+		ListRenderer.setInnerHTML(desRight, ListRenderer.descRight, descriptionRight);
+	},
+	getRenderArea() {
+		const headerArea = document.querySelector(".press__list__news-top");
+		const [desLeft, desRight] = headerArea.nextElementSibling.children;
+		return { headerArea, desLeft, desRight };
 	},
 };
 
