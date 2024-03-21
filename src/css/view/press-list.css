@@ -52,7 +52,7 @@
 	}
 	.total {
 		right: 10px;
-		color: #b4b4b4b0;
+		color: var(--gray);
 		font-weight: var(--main-weight);
 	}
 
