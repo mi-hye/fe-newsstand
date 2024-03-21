@@ -31,15 +31,21 @@ function deleteModal() {
 	$modal.remove();
 }
 
+let eventBinding;
+
 function clickYesNo(unsubscribe, dispatch) {
 	const $modal = document.querySelector(".modal");
-	$modal.addEventListener("click", async ({ target }) => {
+
+	const callback = async ({ target }) => {
 		if (target.id === "yes") {
 			await unsubscribe();
 			dispatch();
 		}
 		deleteModal();
-	});
+	};
+	$modal.removeEventListener("click", eventBinding);
+	eventBinding = callback;
+	$modal.addEventListener("click", eventBinding);
 }
 
 export { renderModal, deleteModal, clickYesNo };
