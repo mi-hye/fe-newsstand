@@ -12,7 +12,7 @@ const template = (pressTitle) => `
 						</div>
 `;
 
-//TODO 구독 떠있을떄 구독해지 안됨, 2번째 페이지에서 구독해지하면 1번째 페이지로 돌아감
+//FIXME 구독 떠있을떄 구독해지 안됨, 2번째 페이지에서 구독해지하면 1번째 페이지로 돌아감
 function renderModal(pressTitle, subscribeFlag) {
 	const $pressDesc = document.querySelector(".press__desc");
 	const $modal = document.createElement("div");

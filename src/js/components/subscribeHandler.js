@@ -6,7 +6,7 @@ import listDispatch from "../view/press/list/listStore.js";
 async function handleSubscribe(target, display) {
 	if (target.tagName === "BUTTON") {
 		const isGrid = display === "Grid";
-		const id = target.className; //TODO ID로 변경
+		const id = target.className;
 		const targetPress = await fetch(`http://localhost:3000/total${display}/${id}`);
 		const targePressJson = await targetPress.json();
 		const title = isGrid ? targePressJson.alt : targePressJson.header.pressTitle;
@@ -15,7 +15,6 @@ async function handleSubscribe(target, display) {
 			renderModal(title, true);
 			await subscribe(targePressJson, id, display);
 			isGrid ? dispatch(display.toLowerCase()) : listDispatch("sub"); // TODO 그리드의 경우 리스트경우 바꿔야함
-
 			setTimeout(deleteModal, MODAL.delay);
 		} else {
 			renderModal(title, false);
