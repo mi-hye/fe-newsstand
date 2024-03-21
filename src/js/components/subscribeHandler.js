@@ -2,7 +2,7 @@ import { renderModal, deleteModal, clickYesNo } from "./modal.js";
 import { MODAL } from "../utils/Constants.js";
 import { dispatch } from "../view/viewStore.js";
 
-async function handleSubscrible(target, display) {
+async function handleSubscribe(target, display) {
 	if (target.tagName === "BUTTON") {
 		const title = target.parentElement.children[0].alt;
 		const id = target.id;
@@ -49,4 +49,4 @@ function updateNews(targetBtnJson, id, display) {
 	});
 }
 
-export default handleSubscrible;
+export default handleSubscribe;

@@ -1,6 +1,6 @@
 import { GRID } from "../../utils/Constants.js";
 import { getJson } from "../../utils/fetchJson.js";
-import handleSubscrible from "../../components/subscribeHandler.js";
+import handleSubscribe from "../../components/subscribeHandler.js";
 
 const Grid = {
 	//TODO refactoring
@@ -39,7 +39,7 @@ const Grid = {
 		return Math.floor(total.length / GRID.cellCount);
 	},
 	clickSubscribe() {
-		Grid.$gridWrap.addEventListener("click", ({ target }) => handleSubscrible(target, "Grid"));
+		Grid.$gridWrap.addEventListener("click", ({ target }) => handleSubscribe(target, "Grid"));
 	},
 };
 

@@ -1,3 +1,4 @@
+import handleSubscribe from "../../../components/subscribeHandler.js";
 import controlSwiper from "../../../components/swiper.js";
 import { LIST } from "../../../utils/Constants.js";
 import { getJson } from "../../../utils/fetchJson.js";
@@ -9,14 +10,10 @@ const List = {
 	$tabList: document.querySelector(".press__list__nav"),
 	$currTab: "",
 	interval: "",
-	async init() {
-		const totalList = await getJson("totalList");
-		List.clickTab(totalList, List.$tabList);
-	},
 	async totalRender() {
 		const totalList = await getJson("totalList");
 		ListRenderer.totalTab(List.$tabList);
-		List.clickTab(totalList, List.$tabList); // TODO 나중에 main으로 빼야함
+		List.clickTab(); // TODO 나중에 main으로 빼야함
 		const firstCategory = document.querySelector(".press__list__nav__item");
 		firstCategory.click();
 		ListRenderer.totalNews(totalList, LIST.firstPageIdx, List.$currTab); // 이거 바꿔
@@ -27,7 +24,6 @@ const List = {
 			List.findNextTab().click(); //TODO 왼쪽버튼가능..?
 			return;
 		}
-
 		ListRenderer.totalNews(List.totalList, idx, List.$currTab);
 		List.resetAnimation(List.$currTab);
 		List.resetInterval();
@@ -78,6 +74,11 @@ const List = {
 		const currTab = Array.from(tabs).find((tab) => tab.ariaSelected === "true");
 		if (currTab.nextElementSibling) return currTab.nextElementSibling;
 		else return tabs[0];
+	},
+	findPreviousTab() {}, //TODO
+	clickSubscribe() {
+		const $newTopWrap = document.querySelector(".press__list__news-top");
+		$newTopWrap.addEventListener("click", ({ target }) => handleSubscribe(target, "list"))
 	},
 };
 
