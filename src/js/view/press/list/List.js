@@ -2,7 +2,7 @@ import handleSubscribe from "../../../components/subscribeHandler.js";
 import { LIST, LIST_TAB, STATE } from "../../../utils/Constants.js";
 import { getJson } from "../../../utils/fetchJson.js";
 import ListRenderer from "./ListRenderer.js";
-import listDispatch from "./listStore.js";
+import listDispatch from "./ListStore.js";
 
 const List = {
 	interval: "",
@@ -75,18 +75,19 @@ const List = {
 
 		const nextRender = (idx) => {
 			if (isTotal) {
+				console.log(idx); //FIXME
 				ListRenderer.currNum(idx, List.listInfo, $currTab);
 				if (idx === lastIdx) {
-					List.findNextTab().click(); //TODO 구독일때랑 왼쪽버튼
+					List.findNextTab().click();
+					return;
 				}
 				if (idx === startIdx - 1) {
 					List.findPreviousTab().click();
+					return;
 				}
-			}
+			} else List.findNextTab().click();
 			ListRenderer.news(currNewsJson, idx, false);
 		};
-		nextRender(idx);
-
 		return nextRender;
 	},
 	tabRender(currNewsJson, isTotal) {
