@@ -5,7 +5,7 @@ import List from "./List.js";
 
 const ListState = {
 	currPressViewJson: "",
-	currPressView: "",
+	currDisplay: "",
 	$currTab: "",
 };
 
@@ -34,14 +34,14 @@ function addDefineProperty() {
 }
 
 function render(currNewsJson) {
-	const isTotal = ListState.currPressView === STATE.total;
+	const isTotal = ListState.currDisplay === STATE.total;
 	List.tabRender(currNewsJson, isTotal);
 	const firstCategory = document.querySelector(".press__list__nav__item");
 	firstCategory.click();
 }
 
 function changeCurrTab($currTab) {
-	const isTotal = ListState.currPressView === STATE.total;
+	const isTotal = ListState.currDisplay === STATE.total;
 	const currTabStartIdx = List.renderTabInfo($currTab, isTotal);
 	const nextRender = List.newsRender(
 		ListState.currPressViewJson,
@@ -55,12 +55,12 @@ function changeCurrTab($currTab) {
 async function listDispatch(state) {
 	//TODO refactor 프롱트 참고
 	if (state === STATE.total) {
-		ListState.currPressView = "total";
+		ListState.currDisplay = "total";
 		ListState.currPressViewJson = await getJson("totalList");
 		return;
 	}
 	if (state === STATE.sub) {
-		ListState.currPressView = "sub";
+		ListState.currDisplay = "sub";
 		ListState.currPressViewJson = await getJson("subList");
 		return;
 	}
