@@ -1,7 +1,7 @@
 import { renderModal, deleteModal, clickYesNo } from "./modal.js";
 import { MODAL } from "../utils/Constants.js";
-import { dispatch } from "../view/viewStore.js";
-import listDispatch from "../view/press/list/listStore.js";
+import { dispatch } from "../view/ViewStore.js";
+import listDispatch from "../view/press/list/ListStore.js";
 
 async function handleSubscribe(target, display) {
 	if (target.tagName === "BUTTON") {
