@@ -8,9 +8,14 @@
 @import "view/press.css";
 @import "view/press-grid.css";
 @import "view/press-list.css";
-@import "view/swiper.css";
+
+/* components */
+@import "./components/swiper.css";
+@import "./components/modal.css";
 
 body {
+	background-color: var(--bacground-color);
+	color: var(--color);
 	height: 100vh;
 	width: 100vw;
 	display: flex;
@@ -30,4 +35,28 @@ button {
 	width: 60%;
 	min-height: 500px;
 	min-width: 700px;
+}
+
+body[data-theme="dark"] {
+	--gray: #fff;
+	--main-border: 2px solid rgba(var(--gray-rgb), 0.4);
+	--gray-rgb: 255, 255, 255;
+	--deep-gray-rgb: 255, 255, 255;
+	--gray-bacground: rgba(var(--gray-rgb), 0.1);
+	--main-font-color: rgba(var(--deep-gray-rgb), 0.7);
+	--bacground-color: #14212a;
+	--color: #fff;
+
+	& .dark-mode > i {
+		color: yellow;
+	}
+	& button {
+		background-color: var(--gray-bacground);
+		font-family: inherit;
+		font-size: 12px;
+	}
+	& span,
+	a {
+		color: #cbcbcb;
+	}
 }

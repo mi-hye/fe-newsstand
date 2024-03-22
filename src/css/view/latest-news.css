@@ -30,7 +30,14 @@
 	height: 55%;
 	width: 80%;
 	overflow: hidden;
+}
+
+.latest-news__rolling--befor-hover,
+.latest-news__rolling--after-hover {
+	overflow: hidden;
 	white-space: nowrap;
+	text-overflow: ellipsis;
+	width: 100%;
 }
 
 .latest-news__rolling--befor-hover {
@@ -41,11 +48,9 @@
 .latest-news__rolling--after-hover {
 	animation: goup 4s cubic-bezier(0.22, 0.7, 1, 1.01) forwards;
 }
-
 .latest-news__rolling--stop:hover {
 	text-decoration: underline;
 }
-
 .latest-news__column:last-child .latest-news__rolling--befor-hover {
 	animation: rolling 5s cubic-bezier(0.22, 0.7, 1, 1.01) infinite;
 }

@@ -12,6 +12,7 @@
 		<div class="news-wrap">
 			<header class="news-header">
 				<a><i class="fa-solid fa-newspaper"></i>뉴스스탠드</a>
+				<div class="dark-mode"><i class="fa-solid fa-moon"></i></div>
 				<span class="news-header__date"></span>
 			</header>
 
@@ -29,7 +30,7 @@
 			<section class="press">
 				<nav class="press__nav">
 					<div class="press__nav__press-column">
-						<div>전체 언론사</div>
+						<div class="active">전체 언론사</div>
 						<div>내가 구독한 언론사</div>
 					</div>
 					<div class="press__nav__icons-column">
@@ -43,7 +44,6 @@
 				</nav>
 
 				<div class="press__desc">
-					<i id="left" class="fa-solid fa-chevron-left swiper"></i>
 					<div class="press__grid-wrap active">
 						<div class="press__grid-wrap__grid"></div>
 					</div>
@@ -59,7 +59,10 @@
 							</div>
 						</div>
 					</div>
-					<i id="right" class="fa-solid fa-chevron-right swiper"></i>
+					<div class="press__swiper">
+						<i id="left" class="fa-solid fa-chevron-left swiper"></i>
+						<i id="right" class="fa-solid fa-chevron-right swiper"></i>
+					</div>
 				</div>
 			</section>
 		</div>

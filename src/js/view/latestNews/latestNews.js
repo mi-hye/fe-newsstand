@@ -5,8 +5,8 @@ import Rolling from "./rolling.js";
 async function initLatestNews() {
 	const newsJson = await readJSON("latestNews");
 
-	const leftNews = newsJson.slice(0, ROLLING.newsCount);
-	const rightNews = newsJson.slice(ROLLING.newsCount, ROLLING.newsCount + 5);
+	const leftNews = newsJson.slice(ROLLING.zero, ROLLING.newsCount);
+	const rightNews = newsJson.slice(ROLLING.newsCount, ROLLING.newsCount + ROLLING.newsCount);
 	const [leftArea, rightArea] = document.querySelectorAll(".latest-news__rolling");
 
 	addLatestNews(leftArea, leftNews, ROLLING.fourSec);

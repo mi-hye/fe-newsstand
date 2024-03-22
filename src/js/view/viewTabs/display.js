@@ -1,5 +1,5 @@
-import Grid from "./Grid.js";
-import List from "../list/List.js";
+import { STATE } from "../../utils/Constants.js";
+import {dispatch} from "../viewStore.js";
 
 const removeActive = (icon, wrap) => {
 	icon.classList.remove("active");
@@ -11,21 +11,21 @@ const addActive = (icon, wrap) => {
 	wrap.classList.add("active");
 };
 
-function addClickPressNaviTab() {
+function toggleDisplayTabs() {
 	const [listIcon, gridIcon] = document.querySelectorAll(".press__nav__icons-column i");
 	const [gridWrap, listWrap] = document.querySelectorAll(".press__desc > div");
 
 	listIcon.addEventListener("click", () => {
 		addActive(listIcon, listWrap);
 		removeActive(gridIcon, gridWrap);
-		List.init();
+		dispatch(STATE.list);
 	});
 
 	gridIcon.addEventListener("click", () => {
 		addActive(gridIcon, gridWrap);
 		removeActive(listIcon, listWrap);
-		Grid.init();
+		dispatch(STATE.grid);
 	});
 }
 
-export default addClickPressNaviTab;
+export default toggleDisplayTabs;

@@ -1,52 +1,41 @@
 import SwiperVisibility from "./SwiperVisibility.js";
 
-function controlSwiper(firstPageIdx, lastPageIdx, render) {
-	const desc = document.querySelector(".press__desc");
+let binding;
+
+function controlSwiper(firstPageIdx, lastPageIdx, render, isGrid) {
+	const swiper = document.querySelector(".press__swiper");
+	SwiperVisibility.init(isGrid, firstPageIdx, lastPageIdx);
 	let currIdx = firstPageIdx;
-	desc.addEventListener("click", (e) => {
-		if (e.target.id === "right" && currIdx !== lastPageIdx) currIdx += 1;
-		if (e.target.id === "left" && currIdx) currIdx -= 1;
 
-		isList()
-			? swipeList(currIdx, firstPageIdx, lastPageIdx, render)
-			: swipeGrid(currIdx, firstPageIdx, lastPageIdx, render);
-	});
+	const callback = async (e) => {
+		const param = { firstPageIdx, lastPageIdx, render, isGrid };
+		currIdx = await handleClickSwiper(e.target, currIdx, param);
+	};
+
+	swiper.removeEventListener("click", binding);
+	binding = callback;
+	swiper.addEventListener("click", binding);
 }
 
-function isList() {
-	const [listIcon, _] = document.querySelectorAll(".press__nav__icons-column i");
-	return Array.from(listIcon.classList).find((cls) => cls === "active") ? true : false;
+async function handleClickSwiper(target, currIdx, param) {
+	const { firstPageIdx, lastPageIdx, render, isGrid } = param;
+	if (target.id === "right" && currIdx !== lastPageIdx) currIdx += 1;
+	if (target.id === "left" && currIdx) currIdx -= 1;
+	if (!currIdx && !isGrid && target.id === "left") currIdx -= 1;
+
+	if (isGrid) await swipeGrid(currIdx, firstPageIdx, lastPageIdx, render);
+	else await swipeList(currIdx, render);
+
+	return currIdx;
 }
 
-function swipeGrid(currIdx, firstPageIdx, lastPageIdx, render) {
-	render(currIdx);
+async function swipeGrid(currIdx, firstPageIdx, lastPageIdx, render) {
+	await render(currIdx);
 	SwiperVisibility.set(currIdx, firstPageIdx, lastPageIdx);
 }
 
-function swipeList(currIdx, firstPageIdx, lastPageIdx, render) {
-	const currSwiper = d.target.id;
-	const listTabs = document.querySelectorAll(".press__list__nav__item");
-	const currTabIdx = Array.from(listTabs)
-		.map((v) => v.ariaSelected)
-		.indexOf("true");
-
-	if (currIdx === firstPageIdx && currSwiper === "left") {
-		//0일때 왼쪽이면 탭변경
-		clickNextListTab(currTabIdx, listTabs);
-	}
-
-	if (currIdx === lastPageIdx && currSwiper === "right") {
-		//마지막일때 오른쪽이면 탭변경
-		clickNextListTab(currTabIdx, listTabs);
-	}
-	render(currIdx);
-}
-
-function clickNextListTab(currTabIdx, listTabs) {
-	let nextTabIdx = currTabIdx + 1;
-	if (currTabIdx === 0) nextTabIdx = 6;
-	if (currTabIdx === 6) nextTabIdx = 0;
-	listTabs[nextTabIdx].click();
+async function swipeList(currIdx, render) {
+	await render(currIdx);
 }
 
 export default controlSwiper;

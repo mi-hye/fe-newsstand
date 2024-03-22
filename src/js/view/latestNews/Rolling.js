@@ -5,7 +5,6 @@ class Rolling {
 	idx;
 
 	constructor() {
-		this.#interval = "";
 		this.idx = ROLLING.firstNewsIdx;
 	}
 	startNewsRolling(delay, createLatestNews) {

@@ -21,3 +21,14 @@
 	font-weight: 600;
 	color: var(--gray);
 }
+
+.dark-mode {
+	& > i {
+		font-size: 20px;
+		color: var(--gray);
+		transition: transform 0.2s ease-in-out;
+		&:hover {
+			transform: scale(1.3);
+		}
+	}
+}
