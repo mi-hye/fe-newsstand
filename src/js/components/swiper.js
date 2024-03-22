@@ -21,6 +21,7 @@ async function handleClickSwiper(target, currIdx, param) {
 	const { firstPageIdx, lastPageIdx, render, isGrid } = param;
 	if (target.id === "right" && currIdx !== lastPageIdx) currIdx += 1;
 	if (target.id === "left" && currIdx) currIdx -= 1;
+	if (!currIdx && !isGrid && target.id === "left") currIdx -= 1;
 
 	if (isGrid) await swipeGrid(currIdx, firstPageIdx, lastPageIdx, render);
 	else await swipeList(currIdx, render);
