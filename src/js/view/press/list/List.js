@@ -67,7 +67,6 @@ const List = {
 	},
 	newsRender(currNewsJson, idx, isTotal, $currTab) {
 		//TODO 뉴스없을때처리
-
 		ListRenderer.news(currNewsJson, idx, false);
 		const [lastIdx, startIdx] = List.getCurrTabInfo($currTab, isTotal);
 		List.resetAnimation($currTab);
@@ -75,7 +74,6 @@ const List = {
 
 		const nextRender = (idx) => {
 			if (isTotal) {
-				console.log(idx); //FIXME
 				ListRenderer.currNum(idx, List.listInfo, $currTab);
 				if (idx === lastIdx) {
 					List.findNextTab().click();
@@ -85,7 +83,7 @@ const List = {
 					List.findPreviousTab().click();
 					return;
 				}
-			} else List.findNextTab().click();
+			} else List.findNextTab().click(); //FIXME 왼쪽은 못간다...
 			ListRenderer.news(currNewsJson, idx, false);
 		};
 		return nextRender;

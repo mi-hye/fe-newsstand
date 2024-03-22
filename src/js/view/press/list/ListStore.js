@@ -1,4 +1,5 @@
 import controlSwiper from "../../../components/swiper.js";
+
 import { LIST, STATE } from "../../../utils/Constants.js";
 import { getJson } from "../../../utils/fetchJson.js";
 import List from "./List.js";
@@ -53,7 +54,6 @@ function changeCurrTab($currTab) {
 }
 
 async function listDispatch(state) {
-	//TODO refactor 프롱트 참고
 	if (state === STATE.total) {
 		ListState.currDisplay = "total";
 		ListState.currPressViewJson = await getJson("totalList");
