@@ -13,13 +13,18 @@ stateDiagram-v2
 
     list/Total --> ListStore:ListDispatch
     list/sub --> ListStore:ListDispatch
-    ListStore --> total/currentTab:ListDispatch
-    ListStore --> total/swiper
-    ListStore --> sub/currentTab:ListDispatch
-    ListStore --> sub/swiper
+    ListStore --> total/SettingcurrentTab:ListDispatch
+    ListStore --> sub/SettingcurrentTab:ListDispatch
+    total/SettingcurrentTab --> total:ListDispatch
+    sub/SettingcurrentTab--> sub:ListDispatch
+    total --> swiper
+    sub -->swiper
+    swiper --> nextNews
 
 ```
+
 ---
+
 ## 🚩구현 목록
 
 - [x] 1. 기본화면
@@ -90,12 +95,15 @@ stateDiagram-v2
 - [x] foundation의 컬러 팔레트 정보를 활용해 다크 모드 테마를 자율적으로 만들어보자
 
 #### 🌟**밑줄이 그어진 요구사항은 설계를 다른 방향으로 해서 구현 할 수 없었던 요구사항들이다. 그리드와 리스트의 구독을 각각 별개의 것으로 생각했고 그리드에선 구독을 하면 현재 페이지의 1페이지로 돌아가고 리스트에선 구독한 화면으로 이동한다.**
+
 ---
 
 ## 🤔고민한 것들 / 깨달은 점
+
 #### **0.`설계`**
->요구사항을 잘 읽자.
-적어도 설계를 80%는 하고 코딩을 시작하자
+
+> 요구사항을 잘 읽자.
+> 적어도 설계를 80%는 하고 코딩을 시작하자
 
 #### 1.크롤링
 
@@ -168,8 +176,8 @@ getComputedStyle() 함수는 컴퓨테이션된 스타일을 반환합니다. �
   - 속도를 조절하려면 deltaY값을 조정하면 된다
   ```
   const scroll = document.querySelector(".press__list__nav");
-		scroll.addEventListener("wheel", (e) => {
-			e.preventDefault();
-			scroll.scrollLeft += e.deltaY > 0 ? e.deltaY - LIST.wheelSpeed : e.deltaY + LIST.wheelSpeed;
-		});
+  	scroll.addEventListener("wheel", (e) => {
+  		e.preventDefault();
+  		scroll.scrollLeft += e.deltaY > 0 ? e.deltaY - LIST.wheelSpeed : e.deltaY + LIST.wheelSpeed;
+  	});
   ```
