@@ -151,9 +151,10 @@ str += `<div>태그 추가</div>`;
 tag.innerHTML=str;
 ```
 
-- overflow 속성이 효력을 갖기 위해선 반드시 블록 레벨 컨테이너의 높이(height 또는 max-height)를 설정하거나, white-space를 nowrap으로 설정해야 한다!(mdn참조)
+- text-overflow 속성이 효력을 갖기 위해선 반드시 블록 레벨 컨테이너의 높이(height 또는 max-height)를 설정하거나, white-space를 nowrap으로 설정해야 한다!(mdn참조)
 
   - text-overflow 는 block container elements만 적용이 됨
+  - `...`시키고 싶은 본인에게 ellipsis와 width를 부여해야함
 
 - first-child , last-child => 해당 클래스를 가진 요소 중에서 첫 번째와 마지막 요소에만 스타일을 적용할 것으로 예상할 수 있지만, 실제로는 `해당 클래스를 가진 요소가 문서 내에서 각각 첫 번째와 마지막 자식 요소일 때에만` 스타일을 적용합니다. 즉, 이 선택자는 요소가 첫 번째 자식 요소이거나 마지막 자식 요소일 때에만 적용되는 것이지 해당 클래스를 가진 요소 중에서 첫 번째와 마지막 요소를 선택하는 것이 아닙니다.
 
