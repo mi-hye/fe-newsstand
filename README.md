@@ -1,6 +1,6 @@
 # 🗞️fe-newsstand
 
-# 🧹상태관리
+## 🧹상태관리
 
 ```mermaid
 stateDiagram-v2
