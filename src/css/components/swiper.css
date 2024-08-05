@@ -1,0 +1,23 @@
+.swiper {
+	position: absolute;
+	top: 46%;
+	font-size: 50px;
+	border: none;
+	cursor: pointer;
+	color: rgba(var(--gray-rgb), 0.5);
+	transition: all 0.3s ease-in-out;
+}
+
+.swiper:hover {
+	color: rgba(var(--gray-rgb), 0.9);
+}
+
+#left {
+	left: -7%;
+	visibility: hidden;
+	opacity: 0;
+}
+
+#right {
+	right: -7%;
+}

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>News stand</title>
+		<link rel="stylesheet" href="src/css/style.css" />
+		<script defer src="https://kit.fontawesome.com/677c473c16.js" crossorigin="anonymous"></script>
+		<script defer type="module" src="src/js/main.js"></script>
+	</head>
+	<body>
+		<div class="news-wrap">
+			<header class="news-header">
+				<a><i class="fa-solid fa-newspaper"></i>뉴스스탠드</a>
+				<div class="dark-mode"><i class="fa-solid fa-moon"></i></div>
+				<span class="news-header__date"></span>
+			</header>
+
+			<section class="latest-news">
+				<div class="latest-news__column">
+					<span>연합뉴스</span>
+					<div class="latest-news__rolling"></div>
+				</div>
+				<div class="latest-news__column">
+					<span>연합뉴스</span>
+					<div class="latest-news__rolling"></div>
+				</div>
+			</section>
+
+			<section class="press">
+				<nav class="press__nav">
+					<div class="press__nav__press-column">
+						<div class="active">전체 언론사</div>
+						<div>내가 구독한 언론사</div>
+					</div>
+					<div class="press__nav__icons-column">
+						<div class="press__nav__list-icons">
+							<i class="fa-solid fa-list"></i>
+						</div>
+						<div class="press__nav__grid-icons">
+							<i class="fas fa-th-large active"></i>
+						</div>
+					</div>
+				</nav>
+
+				<div class="press__desc">
+					<div class="press__grid-wrap active">
+						<div class="press__grid-wrap__grid"></div>
+					</div>
+					<div class="press__list-wrap">
+						<ul class="press__list__nav" role="tablist"></ul>
+						<div class="press__list__news" role="tabpanel">
+							<div class="press__list__news-wrap">
+								<div class="press__list__news-top"></div>
+								<div class="press__list__news-description">
+									<div class="press__list__news-description__left"></div>
+									<div class="press__list__news-description__right"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="press__swiper">
+						<i id="left" class="fa-solid fa-chevron-left swiper"></i>
+						<i id="right" class="fa-solid fa-chevron-right swiper"></i>
+					</div>
+				</div>
+			</section>
+		</div>
+	</body>
+</html>
