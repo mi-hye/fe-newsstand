@@ -21,7 +21,6 @@ for (const key in viewState) {
 	});
 }
 
-//TODO refaactor
 async function changeView() {
 	if (viewState.currentDisplay === "grid" && viewState.currentPressView === "total") {
 		await Grid.totalRender(GRID.firstPageIdx);

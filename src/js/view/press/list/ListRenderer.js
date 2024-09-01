@@ -62,8 +62,7 @@ const ListRenderer = {
 		const [desLeft, desRight] = headerArea.nextElementSibling.children;
 		return { headerArea, desLeft, desRight };
 	},
-	news(newsJson, currIdx, isEmpty) {
-		//TODO 뉴스 비어있을때
+	news(newsJson, currIdx) {
 		const { headerArea, desLeft, desRight } = ListRenderer.getRenderArea();
 		const { id, header, descriptionLeft, descriptionRight, subscription } = newsJson[currIdx];
 		ListRenderer.setInnerHTML(headerArea, ListRenderer.top, { id, header, subscription });
