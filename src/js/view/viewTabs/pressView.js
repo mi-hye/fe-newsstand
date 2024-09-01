@@ -1,5 +1,5 @@
 import { STATE } from "../../utils/Constants.js";
-import { dispatch } from "../viewStore.js";
+import { dispatch } from "../ViewStore.js";
 
 function togglePressViewTabs() {
 	const [totalView, subView] = document.querySelectorAll(".press__nav__press-column > div");
@@ -8,14 +8,12 @@ function togglePressViewTabs() {
 	totalView.addEventListener("click", () => {
 		totalView.classList.add("active");
 		subView.classList.remove("active");
-		// gridIcon.click(); FIXME 버그나 바꿔야해
 		dispatch(STATE.total);
 	});
 
 	subView.addEventListener("click", () => {
 		subView.classList.add("active");
 		totalView.classList.remove("active");
-		// listIcon.click();
 		dispatch(STATE.sub);
 	});
 }

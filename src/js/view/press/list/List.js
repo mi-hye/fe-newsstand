@@ -66,7 +66,6 @@ const List = {
 		$newTopWrap.addEventListener("click", ({ target }) => handleSubscribe(target, "List"));
 	},
 	newsRender(currNewsJson, idx, isTotal, $currTab) {
-		//TODO 뉴스없을때처리
 		ListRenderer.news(currNewsJson, idx, false);
 		const [lastIdx, startIdx] = List.getCurrTabInfo($currTab, isTotal);
 		List.resetAnimation($currTab);
@@ -83,7 +82,7 @@ const List = {
 					List.findPreviousTab().click();
 					return;
 				}
-			} else List.findNextTab().click(); //FIXME 왼쪽은 못간다...
+			} else List.findNextTab().click();
 			ListRenderer.news(currNewsJson, idx, false);
 		};
 		return nextRender;
@@ -96,7 +95,6 @@ const List = {
 		}
 		const newsTitles = currNewsJson.map((news) => news.header.pressTitle);
 		ListRenderer.tabs($tabList, newsTitles);
-		//TODO 뉴스가 아무것도 없을때 처리
 	},
 	clickTab() {
 		const $tabList = document.querySelector(".press__list__nav");

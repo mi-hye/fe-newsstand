@@ -3,7 +3,6 @@ import { getJson } from "../../utils/fetchJson.js";
 import handleSubscribe from "../../components/subscribeHandler.js";
 
 const Grid = {
-	//TODO refactoring
 	$gridWrap: document.querySelector(".press__grid-wrap__grid"),
 	async totalRender(idx) {
 		const startIdx = idx * GRID.cellCount;
