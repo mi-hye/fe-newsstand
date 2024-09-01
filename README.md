@@ -1,5 +1,7 @@
 # 🗞️fe-newsstand
 
+> [기획서](https://www.figma.com/design/SJHhyw3G0A4qDSWMIo9Ths/FE_%EB%89%B4%EC%8A%A4%EC%8A%A4%ED%83%A0%EB%93%9C?node-id=11101-21659&node-type=FRAME)
+
 # 🧹상태관리
 
 ```mermaid
