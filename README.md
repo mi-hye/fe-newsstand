@@ -2,7 +2,7 @@
 
 > [기획서](https://www.figma.com/design/SJHhyw3G0A4qDSWMIo9Ths/FE_%EB%89%B4%EC%8A%A4%EC%8A%A4%ED%83%A0%EB%93%9C?node-id=11101-21659&node-type=FRAME)
 
-## 🤔고민한 것들 / 깨달은 점 / 메모
+## 🤔 기록
 
 📝[위키](https://github.com/mi-hye/fe-newsstand/wiki/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%EB%A5%BC-%EC%A7%84%ED%96%89%ED%95%98%EB%A9%B4%EC%84%9C-%ED%95%9C-%EA%B8%B0%EB%A1%9D)
 
