@@ -1,7 +1,6 @@
 import controlSwiper from "../../../components/swiper.js";
-
-import { LIST, STATE } from "../../../utils/Constants.js";
-import { getJson } from "../../../utils/fetchJson.js";
+import { LIST, STATE } from "../../../helper/Constants.js";
+import fetchJSON from "../../../helper/fetchJSON.js";
 import List from "./List.js";
 
 const ListState = {
@@ -56,12 +55,12 @@ function changeCurrTab($currTab) {
 async function listDispatch(state) {
 	if (state === STATE.total) {
 		ListState.currDisplay = "total";
-		ListState.currPressViewJson = await getJson("totalList");
+		ListState.currPressViewJson = await fetchJSON("totalList");
 		return;
 	}
 	if (state === STATE.sub) {
 		ListState.currDisplay = "sub";
-		ListState.currPressViewJson = await getJson("subList");
+		ListState.currPressViewJson = await fetchJSON("subList");
 		return;
 	}
 	if (typeof state === "object") {

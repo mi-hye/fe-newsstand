@@ -1,5 +1,5 @@
 import { renderModal, deleteModal, clickYesNo } from "./modal.js";
-import { MODAL } from "../utils/Constants.js";
+import { MODAL } from "../helper/Constants.js";
 import { dispatch } from "../view/ViewStore.js";
 import listDispatch from "../view/press/list/ListStore.js";
 

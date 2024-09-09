@@ -1,12 +1,12 @@
-import { GRID } from "../../utils/Constants.js";
-import { getJson } from "../../utils/fetchJson.js";
+import { GRID } from "../../helper/Constants.js";
+import fetchJSON from "../../helper/fetchJSON.js";
 import handleSubscribe from "../../components/subscribeHandler.js";
 
 const Grid = {
 	$gridWrap: document.querySelector(".press__grid-wrap__grid"),
 	async totalRender(idx) {
 		const startIdx = idx * GRID.cellCount;
-		const totalJson = await getJson("totalGrid");
+		const totalJson = await fetchJSON("totalGrid");
 
 		Grid.$gridWrap.innerHTML = Array.from({ length: GRID.cellCount }).reduce((prev, curr, i) => {
 			curr = totalJson[startIdx + i];
@@ -20,7 +20,7 @@ const Grid = {
 	},
 	async subRender(idx) {
 		const startIdx = idx * GRID.cellCount;
-		const total = await getJson("subGrid");
+		const total = await fetchJSON("subGrid");
 		Grid.$gridWrap.innerHTML = Array.from({ length: GRID.cellCount }).reduce((prev, curr, i) => {
 			curr = total[startIdx + i];
 			if (curr)
