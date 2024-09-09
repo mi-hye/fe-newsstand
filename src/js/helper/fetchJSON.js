@@ -1,4 +1,4 @@
-async function getJson(display) {
+async function fetchJSON(display) {
 	try {
 		const response = await fetch(`http://localhost:3000/${display}`);
 		const text = await response.json();
@@ -8,4 +8,4 @@ async function getJson(display) {
 	}
 }
 
-export { getJson };
+export default fetchJSON;

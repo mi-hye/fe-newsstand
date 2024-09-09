@@ -1,8 +1,8 @@
 import puppeteer from "puppeteer";
-import saveJSON from "./File.js";
-import getAllImgs from "./crawlling/getImgs.js";
-import getLatestNews from "./crawlling/getLatestNews.js";
-import getAllListNews from "./crawlling/list/getAllListNews.js";
+import saveJSON from "./helper/File.js";
+import getAllImgs from "./modules/getImgs.js";
+import getLatestNews from "./modules/getLatestNews.js";
+import getAllListNews from "./modules/list/getAllListNews.js";
 
 async function crawl() {
 	const latestNews = [];

@@ -1,12 +1,12 @@
 import handleSubscribe from "../../../components/subscribeHandler.js";
-import { LIST, LIST_TAB, STATE } from "../../../utils/Constants.js";
-import { getJson } from "../../../utils/fetchJson.js";
+import { LIST, LIST_TAB } from "../../../helper/Constants.js";
+import fetchJSON from "../../../helper/fetchJSON.js";
 import ListRenderer from "./ListRenderer.js";
 import listDispatch from "./ListStore.js";
 
 const List = {
 	interval: "",
-	listInfo: await getJson("listInfo"),
+	listInfo: await fetchJSON("listInfo"),
 	handleProgressEvent(target) {
 		const tabs = document.querySelectorAll(".press__list__nav__item");
 		tabs.forEach((tab) => (tab.ariaSelected = false));

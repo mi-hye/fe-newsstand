@@ -1,4 +1,4 @@
-import { VISIBILITY } from "../utils/Constants.js";
+import { VISIBILITY } from "../helper/Constants.js";
 
 const SwiperVisibility = {
 	left: document.querySelector("#left").style,

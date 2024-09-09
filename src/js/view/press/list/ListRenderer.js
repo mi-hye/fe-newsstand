@@ -1,4 +1,4 @@
-import { LIST_TAB } from "../../../utils/Constants.js";
+import { LIST_TAB } from "../../../helper/Constants.js";
 
 const ListRenderer = {
 	tabs($tabList, tabs) {
